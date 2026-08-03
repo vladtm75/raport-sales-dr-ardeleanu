@@ -125,7 +125,7 @@ const C2  = ['DRB','CTR','TGV','FCS'];
 // Source: W18 Sales Presentation slide 5 — "Trend by treatment" (achitat RON)
 // Index: 0=Apr25, 1=Mai25, 2=Iun25, 3=Iul25, 4=Aug25, 5=Sep25, 6=Oct25, 7=Nov25,
 //        8=Dec25, 9=Ian26, 10=Feb26, 11=Mar26, 12=Apr26 (latest)
-const CAT_MONTHS = ['Apr 25','Mai 25','Iun 25','Iul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Ian 26','Feb 26','Mar 26','Apr 26','Mai 26','Iun 26','Iul 26'];
+const CAT_MONTHS = ['Ian 25','Feb 25','Mar 25','Apr 25','Mai 25','Iun 25','Iul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Ian 26','Feb 26','Mar 26','Apr 26','Mai 26','Iun 26','Iul 26'];
 const CAT_LIST = [
   {key:'IMP', name:'Implantologie',            color:'#1F4E79'},
   {key:'PRO', name:'Protetică',                color:'#C9A227'},
@@ -142,19 +142,19 @@ const CAT_LIST = [
   {key:'ESF', name:'Estetică facială',         color:'#787370'},
 ];
 const CAT_DATA = {
-  IMP:[613000,657000,810000,941000,674000,929000,954000,1030000,444000,984000,917000,1110000,882000,951000,1246000,1248000],
-  PRO:[591000,720000,569000,534000,622000,808000,790000,610000,454000,601000,668000,941000,807000,834000,909000,1080000],
-  TOD:[236000,231000,186000,211000,218000,240000,260000,257000,229000,314000,356000,432000,416000,445000,428000,474000],
-  END:[216000,234000,230000,238000,213000,268000,271000,282000,259000,305000,313000,391000,364000,346000,333000,358000],
-  ORT:[225000,253000,257000,231000,211000,246000,315000,308000,259000,314000,333000,330000,346000,421000,391000,442000],
-  PED:[134000,146000,113000,147000,149000,150000,133000,137000,113000,142000,154000,185000,188000,195000,201000,207000],
-  CHI:[143000,138000,153000,153000,164000,175000,169000,153000,127000,187000,178000,215000,181000,173000,207000,247000],
-  PRF:[112000,116000,111000,130000,141000,150000,166000,157000,125000,136000,153000,202000,178000,173000,192000,208000],
-  PAR:[ 47000, 70000, 74000, 48000, 54000, 87000, 77000, 90000, 55000,104000,117000,122000,132000,106000,104000,127000],
-  IMG:[ 65000, 81000, 69000, 95000, 97000, 89000, 90000, 90000, 60000,105000,101000,122000,110000,115000,124000,144000],
-  CON:[ 40000, 44000, 42000, 52000, 55000, 54000, 41000, 41000, 38000, 56000, 53000, 55000, 32000,30000,31000,35000],
-  ESD:[null,null,null,3000,10000,2000,3000,1000,4000,7000,3000,6000,5000,7000,10000,9000],
-  ESF:[null,null,null,12000,15000,5000,25000,12000,11000,7000,6000,14000,9000,6000,13000,22000],
+  IMP:[618000,848000,1080000,613000,657000,810000,941000,674000,929000,954000,1030000,444000,984000,917000,1110000,882000,951000,1246000,1248000],
+  PRO:[393000,494000,656000,591000,720000,569000,534000,622000,808000,790000,610000,454000,601000,668000,941000,807000,834000,909000,1080000],
+  TOD:[183000,250000,290000,236000,231000,186000,211000,218000,240000,260000,257000,229000,314000,356000,432000,416000,445000,428000,474000],
+  END:[164000,239000,220000,216000,234000,230000,238000,213000,268000,271000,282000,259000,305000,313000,391000,364000,346000,333000,358000],
+  ORT:[230000,225000,255000,225000,253000,257000,231000,211000,246000,315000,308000,259000,314000,333000,330000,346000,421000,391000,442000],
+  PED:[145000,154000,171000,134000,146000,113000,147000,149000,150000,133000,137000,113000,142000,154000,185000,188000,195000,201000,207000],
+  CHI:[141000,155000,179000,143000,138000,153000,153000,164000,175000,169000,153000,127000,187000,178000,215000,181000,173000,207000,247000],
+  PRF:[134000,127000,114000,112000,116000,111000,130000,141000,150000,166000,157000,125000,136000,153000,202000,178000,173000,192000,208000],
+  PAR:[67000,68000,98000, 47000, 70000, 74000, 48000, 54000, 87000, 77000, 90000, 55000,104000,117000,122000,132000,106000,104000,127000],
+  IMG:[95000,83000,76000, 65000, 81000, 69000, 95000, 97000, 89000, 90000, 90000, 60000,105000,101000,122000,110000,115000,124000,144000],
+  CON:[50000,48000,53000, 40000, 44000, 42000, 52000, 55000, 54000, 41000, 41000, 38000, 56000, 53000, 55000, 32000,30000,31000,35000],
+  ESD:[23000,28000,24000,26000,23000,21000,3000,10000,2000,3000,1000,4000,7000,3000,6000,5000,7000,10000,9000],
+  ESF:[null,null,null,null,null,null,12000,15000,5000,25000,12000,11000,7000,6000,14000,9000,6000,13000,22000],
 };
 // Mix pe clinici — sursa: slide Sales Split din raportul lunar (procente per clinica)
 const CLINIC_MIX = {"1":{"M":{"OLT":{"IMP":22.2,"PRO":19.5,"ORT":12.8,"PED":8.1,"PAR":4,"CHI":6.7,"END":6.4,"TOD":9.9,"PRF":5.2,"IMG":3.5,"CON":1.7},"GRG":{"CHI":8.5,"IMP":24.1,"PRO":26.8,"ORT":9.5,"PED":3.2,"PAR":3.6,"ESD":1.2,"END":8,"TOD":5.6,"PRF":4.4,"IMG":3.2,"CON":1.9},"SLB":{"CHI":6.1,"IMP":43.7,"PRO":13.8,"ORT":11.3,"PED":4.2,"PAR":2.2,"END":7.4,"TOD":4.7,"PRF":2.7,"IMG":2.2,"CON":1.7},"CLR":{"CHI":5.2,"IMP":30.9,"PRO":19,"ORT":6.9,"PED":5.4,"PAR":4.2,"END":9.9,"TOD":10.1,"PRF":3.2,"IMG":3.7,"CON":1.5},"DRB":{"CHI":4.9,"IMP":18.2,"PRO":14.3,"ORT":13.8,"PED":3.9,"ESD":1,"END":5.2,"TOD":27.9,"PRF":7.6,"IMG":1.5,"CON":1.7},"CTR":{"CON":3.9,"IMP":12.3,"PRO":10.3,"ORT":17.2,"CHI":2.5,"END":13.5,"TOD":27.8,"PRF":8.8,"IMG":3.7},"TGV":{"CHI":5.7,"IMP":34.1,"PRO":9.4,"ORT":5.2,"PED":2,"PAR":2.2,"END":17.7,"TOD":13.1,"PRF":5.4,"IMG":3.7,"CON":1.5},"TOT":{"IMP":30.2,"PRO":18.4,"TOD":9.6,"END":9.4,"ORT":9.6,"PED":4.4,"CHI":5.7,"PRF":4.2,"PAR":3.2,"IMG":3.2,"CON":1.7,"ESD":0.2,"ESF":0.2}},"Y":{"OLT":{"IMP":22.3,"PRO":19.5,"ORT":12.8,"PED":8.1,"PAR":4,"CHI":6.7,"END":6.4,"TOD":9.9,"PRF":5.4,"IMG":3.2,"CON":1.7},"GRG":{"CHI":7.4,"IMP":24.4,"PRO":27,"ORT":9.6,"PED":3.2,"PAR":3.7,"ESD":1.2,"END":8.1,"TOD":5.7,"PRF":4.7,"IMG":3,"CON":2},"SLB":{"CHI":5.9,"IMP":43.9,"PRO":13.8,"ORT":11.3,"PED":4.2,"PAR":2.2,"END":7.4,"TOD":4.7,"PRF":2.7,"IMG":2.2,"CON":1.7},"CLR":{"IMP":31.1,"PRO":19,"ORT":6.9,"PED":5.4,"PAR":4.2,"CHI":4.9,"END":9.9,"TOD":10.1,"PRF":3.5,"IMG":3.5,"CON":1.5},"DRB":{"CHI":4.7,"IMP":18.2,"PRO":14.3,"ORT":13.8,"PED":3.9,"ESD":1,"END":5.2,"TOD":28.1,"PRF":7.9,"IMG":1.2,"CON":1.7},"CTR":{"IMP":12.3,"PRO":10.4,"ORT":17.3,"CHI":2.5,"END":13.6,"TOD":28.1,"PRF":8.9,"IMG":3.7,"CON":3.2},"TGV":{"CON":1.7,"IMP":34.2,"PRO":9.4,"ORT":5.2,"PED":2,"PAR":2.2,"CHI":5.4,"END":17.7,"TOD":13.1,"PRF":5.7,"IMG":3.4},"TOT":{"IMP":30.2,"PRO":18.4,"TOD":9.6,"END":9.4,"ORT":9.6,"PED":4.4,"CHI":5.7,"PRF":4.2,"PAR":3.2,"IMG":3.2,"CON":1.7,"ESD":0.2,"ESF":0.2}}},"2":{"M":{"OLT":{"IMP":24.3,"PRO":15.8,"ORT":12.8,"PED":7.2,"PAR":3,"CHI":7.7,"END":8.9,"TOD":10.4,"PRF":5.2,"IMG":3.7,"CON":1},"GRG":{"IMP":25.7,"PRO":27.9,"ORT":9.6,"PED":4,"PAR":5.4,"CHI":4.9,"END":6.9,"TOD":7.4,"PRF":4.2,"IMG":2,"CON":2},"SLB":{"IMP":41,"PRO":15.6,"ORT":10.9,"PED":3.7,"PAR":4.4,"CHI":5.4,"END":6.4,"TOD":6.7,"PRF":3,"IMG":1.7,"CON":1.2},"CLR":{"CHI":5.4,"IMP":21.9,"PRO":22.7,"ORT":9.1,"PED":5.9,"PAR":3,"END":11.8,"TOD":9.9,"PRF":5.2,"IMG":3.4,"CON":1.7},"DRB":{"CHI":4.6,"PRO":16.1,"ORT":8.6,"PED":7.8,"PAR":2.7,"ESD":2.2,"END":11.5,"TOD":31.3,"PRF":10.8,"IMG":2.2,"CON":2.2},"CTR":{"CHI":3.2,"IMP":11.3,"PRO":17,"ORT":9.6,"END":18.7,"TOD":24.5,"PRF":10.1,"IMG":2.9,"CON":2.7},"TGV":{"CHI":5.4,"IMP":35.8,"PRO":14,"ORT":7.6,"PED":2.2,"PAR":2,"END":10.6,"TOD":12.8,"PRF":5.2,"IMG":2.9,"CON":1.5},"TOT":{"CHI":6.1,"IMP":27.1,"PRO":19.9,"ORT":10.1,"PED":4.4,"PAR":3.4,"END":9.3,"TOD":10.6,"PRF":4.7,"IMG":2.7,"CON":1.7}},"Y":{"OLT":{"IMP":23.4,"PRO":17.3,"ORT":13.1,"PED":7.4,"PAR":3.5,"CHI":7.4,"END":7.7,"TOD":10.1,"PRF":5.2,"IMG":3.7,"CON":1.2},"GRG":{"CON":2.2,"IMP":25.1,"PRO":27.5,"ORT":9.6,"PED":3.4,"PAR":4.9,"CHI":5.4,"ESD":1,"END":7.6,"TOD":6.7,"PRF":3.9,"IMG":2.7},"SLB":{"IMP":42.4,"PRO":14.8,"ORT":11.1,"PED":3.7,"PAR":3.5,"CHI":5.7,"END":6.9,"TOD":5.7,"PRF":2.7,"IMG":2,"CON":1.5},"CLR":{"CHI":5.2,"IMP":27.1,"PRO":20.4,"ORT":7.9,"PED":5.7,"PAR":3.7,"END":10.8,"TOD":9.9,"PRF":4.4,"IMG":3.2,"CON":1.7},"DRB":{"CHI":4.2,"IMP":8.8,"PRO":15.5,"ORT":11.1,"PED":5.9,"PAR":1.5,"ESD":1.5,"END":8.8,"TOD":29.7,"PRF":9.3,"IMG":1.7,"CON":2},"CTR":{"IMP":11.9,"PRO":13.8,"ORT":13.3,"CHI":2.5,"END":16.3,"TOD":26.1,"PRF":9.9,"IMG":3.2,"CON":3},"TGV":{"CHI":5.4,"IMP":35.1,"PRO":12,"ORT":6.6,"PED":2,"PAR":2.2,"END":13.8,"TOD":12.8,"PRF":5.4,"IMG":3.2,"CON":1.5},"TOT":{"IMP":28.7,"PRO":19.3,"ORT":9.9,"PED":4.4,"PAR":3.2,"CHI":5.9,"END":9.4,"TOD":10.1,"PRF":4.4,"IMG":3,"CON":1.7}}},"3":{"M":{"OLT":{"CON":2.7,"IMP":20.2,"PRO":27,"ORT":8,"PED":5.8,"PAR":2.7,"CHI":5.4,"END":8.3,"TOD":10.9,"PRF":5.6,"IMG":3.4},"GRG":{"IMP":28.6,"PRO":28.4,"ORT":8.1,"PED":4,"PAR":3.7,"CHI":4,"ESD":1.2,"END":6.9,"TOD":8.1,"PRF":4,"IMG":1,"CON":2},"SLB":{"IMP":22.2,"PRO":25.1,"ORT":10.6,"PED":4.7,"PAR":3.5,"CHI":8.6,"END":11.9,"TOD":6.4,"PRF":3.5,"IMG":2.5,"CON":1},"CLR":{"CHI":4.9,"IMP":32,"PRO":24.9,"ORT":7.4,"PED":4.9,"PAR":2.7,"END":7.6,"TOD":9.4,"PRF":3.2,"IMG":1.5,"CON":1.5},"DRB":{"CHI":5.2,"IMP":14.8,"PRO":20,"ORT":7.4,"PED":4.7,"PAR":5.2,"END":8.1,"TOD":23.7,"PRF":8.9,"IMG":2},"CTR":{"IMP":7.4,"PRO":18.8,"ORT":17.5,"PED":0.7,"PAR":1,"CHI":4,"END":16.3,"TOD":20.8,"PRF":8.4,"IMG":4.4,"CON":0.7},"TGV":{"CHI":6.6,"IMP":36.9,"PRO":11.8,"ORT":5.9,"PED":3.4,"PAR":2.7,"END":11.8,"TOD":12.5,"PRF":5.2,"IMG":2.2,"CON":1},"FCS":{"IMP":22.2,"PRO":5.4,"ORT":0.7,"PED":6.2,"PAR":1.5,"CHI":4.2,"END":14.3,"TOD":11.4,"PRF":17,"IMG":15.1,"CON":2},"TOT":{"IMP":27.1,"PRO":22.7,"ORT":7.9,"PED":4.4,"PAR":3,"CHI":5.7,"END":9.4,"TOD":10.6,"PRF":5.2,"IMG":2.5,"CON":1.5}},"Y":{"OLT":{"CON":1.7,"IMP":22.2,"PRO":20.6,"ORT":11.3,"PED":6.9,"PAR":3.4,"CHI":6.1,"END":8.4,"TOD":10.6,"PRF":5.4,"IMG":3.4},"GRG":{"CON":2.2,"IMP":26.4,"PRO":27.5,"ORT":9.1,"PED":3.7,"PAR":4.2,"CHI":5.2,"ESD":1,"END":7.4,"TOD":7.1,"PRF":4.2,"IMG":2},"SLB":{"CON":1.7,"IMP":35.9,"PRO":18,"ORT":10.8,"PED":4.2,"PAR":3.4,"CHI":6.7,"END":8.4,"TOD":5.9,"PRF":3,"IMG":2},"CLR":{"IMP":28.6,"PRO":22.2,"ORT":7.7,"PED":5.4,"PAR":3.2,"CHI":5.4,"END":9.4,"TOD":9.9,"PRF":4,"IMG":2.5,"CON":1.7},"DRB":{"CHI":4.4,"IMP":10.8,"PRO":16.7,"ORT":9.6,"PED":5.7,"PAR":2.5,"ESD":1.2,"END":8.9,"TOD":27.6,"PRF":9.4,"IMG":1.7,"CON":1.5},"CTR":{"IMP":10.4,"PRO":14.3,"ORT":16.3,"CHI":3.2,"END":16.5,"TOD":24,"PRF":9.1,"IMG":4.2,"CON":2},"TGV":{"CHI":5.9,"IMP":35.4,"PRO":12.1,"ORT":6.4,"PED":2.7,"PAR":2.2,"END":13.1,"TOD":12.8,"PRF":5.2,"IMG":3,"CON":1.2},"FCS":{"IMP":21.3,"PRO":5.9,"PED":6.2,"PAR":1.2,"CHI":4.4,"END":15.8,"TOD":11.6,"PRF":16.8,"IMG":14.8,"CON":2},"TOT":{"CHI":6.2,"IMP":27.9,"PRO":20.2,"ORT":8.9,"PED":4.7,"PAR":3,"END":9.6,"TOD":10.1,"PRF":4.9,"IMG":3,"CON":1.5}}},"4":{"M":{"OLT":{"CON":1.5,"IMP":27.3,"PRO":11.2,"ORT":11.9,"PED":7.5,"PAR":4.4,"CHI":7.1,"END":8.5,"TOD":10.9,"PRF":6.3,"IMG":3.4},"GRG":{"IMP":22.7,"PRO":27.6,"ORT":11.9,"PED":4.7,"PAR":3.5,"CHI":4.9,"END":9.6,"TOD":7.7,"PRF":4.4,"IMG":2,"CON":1},"SLB":{"IMP":26.7,"PRO":29.2,"ORT":11.4,"PED":4,"PAR":4.7,"CHI":5.7,"END":7.2,"TOD":5.2,"PRF":3.2,"IMG":1.7,"CON":1},"CLR":{"CHI":5.4,"IMP":19.5,"PRO":29.4,"ORT":7.6,"PED":5.4,"PAR":4.2,"ESD":0.7,"END":8.6,"TOD":10.6,"PRF":4.9,"IMG":2.7,"CON":1},"DRB":{"CHI":5.2,"IMP":12.3,"PRO":15.5,"ORT":8.4,"PED":6.7,"ESD":2.7,"END":10.8,"TOD":26.8,"PRF":9.4,"IMG":2.2},"CTR":{"IMP":8.4,"PRO":28.1,"ORT":13.3,"CHI":3.5,"END":11.6,"TOD":20,"PRF":8.4,"IMG":5.7,"CON":1},"TGV":{"CHI":4.4,"IMP":32.2,"PRO":14.5,"ORT":8.6,"PED":3.2,"PAR":2.5,"END":16,"TOD":11.5,"PRF":3.9,"IMG":2.5,"CON":0.7},"FCS":{"IMP":29.4,"PRO":5.9,"ORT":2.5,"PED":8.1,"PAR":4,"CHI":3.2,"END":12.1,"TOD":21.2,"PRF":7.2,"IMG":5.4,"CON":1},"TOT":{"CHI":6.1,"IMP":24,"PRO":21.8,"ORT":9.6,"PED":4.9,"PAR":3.7,"END":9.8,"TOD":11.3,"PRF":5.1,"IMG":2.7,"CON":1}},"Y":{"OLT":{"CON":1.7,"IMP":23.6,"PRO":18.4,"ORT":11.3,"PED":7.1,"PAR":3.4,"CHI":6.6,"END":8.4,"TOD":10.6,"PRF":5.7,"IMG":3.2},"GRG":{"CON":2,"IMP":25.6,"PRO":27.6,"ORT":9.6,"PED":3.9,"PAR":3.9,"CHI":5.9,"END":7.9,"TOD":7.4,"PRF":4.2,"IMG":2},"SLB":{"IMP":33,"PRO":22.5,"ORT":10.9,"PED":4,"PAR":3.7,"CHI":6.2,"END":7.9,"TOD":5.7,"PRF":3.2,"IMG":1.7,"CON":1.2},"CLR":{"IMP":26.5,"PRO":24,"ORT":7.7,"PED":5.4,"PAR":3.5,"CHI":5.2,"END":9.4,"TOD":10.1,"PRF":4,"IMG":2.7,"CON":1.5},"DRB":{"CHI":4.4,"IMP":11.3,"PRO":16.5,"ORT":9.6,"PED":5.7,"PAR":2.2,"ESD":1.5,"END":9.1,"TOD":27.7,"PRF":9.1,"IMG":1.7,"CON":1.2},"CTR":{"IMP":9.6,"PRO":17.8,"ORT":15.3,"CHI":3.5,"END":15.3,"TOD":23.3,"PRF":9.1,"IMG":4.4,"CON":1.7},"TGV":{"CHI":5.4,"IMP":35,"PRO":12.8,"ORT":6.7,"PED":3,"PAR":2.2,"END":13.5,"TOD":12.6,"PRF":4.9,"IMG":2.7,"CON":1.2},"FCS":{"IMP":26.2,"PRO":5.7,"ORT":2,"PED":7.2,"PAR":3,"CHI":3.5,"END":13.1,"TOD":17.8,"PRF":10.9,"IMG":9.1,"CON":1.5},"TOT":{"CHI":5.9,"IMP":27.1,"PRO":20.9,"ORT":9.1,"PED":4.7,"PAR":3.2,"END":9.4,"TOD":10.6,"PRF":4.9,"IMG":2.7,"CON":1.5}}},"5":{"M":{"OLT":{"CON":1.5,"IMP":12.2,"PRO":16.5,"ORT":16.3,"PED":8.3,"PAR":3.6,"CHI":6.8,"END":12.2,"TOD":11.7,"PRF":6.3,"IMG":4.6},"GRG":{"IMP":26.7,"PRO":21,"ORT":11.6,"PED":4.7,"PAR":3.2,"CHI":5.2,"END":10.1,"TOD":8.6,"PRF":4.9,"IMG":2.5,"CON":1.5},"SLB":{"IMP":32,"PRO":30.6,"ORT":9.9,"PED":3.5,"PAR":2.5,"CHI":4,"END":6.9,"TOD":5.7,"PRF":2.7,"IMG":1.5,"CON":0.7},"CLR":{"CHI":5.9,"IMP":24.9,"PRO":20.3,"ORT":8.8,"PED":6.9,"PAR":3.7,"END":8.8,"TOD":12.3,"PRF":4.7,"IMG":2.7,"CON":1},"DRB":{"CHI":3.9,"IMP":14.3,"PRO":21.4,"ORT":27.9,"PED":2.5,"END":7.1,"TOD":13.8,"PRF":7.4,"IMG":1.7},"CTR":{"IMP":7.7,"PRO":27.8,"ORT":18.3,"CHI":4.9,"ESD":1.5,"END":11.4,"TOD":17,"PRF":6.2,"IMG":4.2,"CON":1},"TGV":{"CHI":4.4,"IMP":35.2,"PRO":27.3,"ORT":7.1,"PED":1.7,"PAR":1,"END":8.1,"TOD":9.3,"PRF":3.4,"IMG":2.5},"FCS":{"IMP":21.2,"PRO":5.7,"ORT":6.9,"PED":9.6,"PAR":4,"CHI":3,"END":9.1,"TOD":27.7,"PRF":6.9,"IMG":5.2,"CON":0.7},"TOT":{"IMP":25.3,"PRO":21.7,"ORT":11.1,"PED":5.2,"PAR":2.7,"CHI":4.9,"END":9.1,"TOD":11.6,"PRF":4.7,"IMG":3,"CON":0.7}},"Y":{"OLT":{"CON":1.5,"IMP":21.3,"PRO":18.2,"ORT":12.3,"PED":7.4,"PAR":3.4,"CHI":6.9,"END":8.8,"TOD":10.8,"PRF":5.7,"IMG":3.7},"GRG":{"CON":2,"IMP":26.4,"PRO":26.1,"ORT":10.1,"PED":3.9,"PAR":3.9,"CHI":5.7,"END":8.1,"TOD":7.6,"PRF":4.2,"IMG":2},"SLB":{"IMP":33.5,"PRO":23,"ORT":10.6,"PED":4,"PAR":3.5,"CHI":5.9,"END":7.9,"TOD":5.7,"PRF":3,"IMG":1.7,"CON":1.2},"CLR":{"IMP":26.4,"PRO":23.5,"ORT":7.9,"PED":5.4,"PAR":3.5,"CHI":5.2,"END":9.6,"TOD":10.1,"PRF":4.4,"IMG":2.5,"CON":1.5},"DRB":{"CHI":4.2,"IMP":11.8,"PRO":17.7,"ORT":13.5,"PED":4.9,"PAR":1.7,"ESD":1.5,"END":8.6,"TOD":24.5,"PRF":8.9,"IMG":1.7,"CON":1},"CTR":{"IMP":9.4,"PRO":19.5,"ORT":16,"CHI":4.2,"END":14.6,"TOD":21.7,"PRF":8.4,"IMG":4.7,"CON":1.5},"TGV":{"CHI":5.2,"IMP":34.9,"PRO":15.8,"ORT":6.9,"PED":2.5,"PAR":2.2,"END":12.3,"TOD":11.8,"PRF":4.7,"IMG":2.7,"CON":1},"FCS":{"IMP":24.2,"PRO":5.7,"ORT":4.4,"PED":8.1,"PAR":3.2,"CHI":3.5,"END":11.4,"TOD":21.7,"PRF":9.4,"IMG":7.4,"CON":1},"TOT":{"CHI":5.9,"IMP":26.6,"PRO":20.9,"ORT":9.6,"PED":4.9,"PAR":3,"END":9.4,"TOD":10.8,"PRF":4.7,"IMG":3,"CON":1.2}}},"6":{"M":{"OLT":{"CON":1.5,"IMP":23.9,"PRO":19.7,"ORT":12.2,"PED":9,"PAR":1.7,"CHI":7.1,"END":8.3,"TOD":6.6,"PRF":6.1,"IMG":3.9},"GRG":{"ESF":1,"IMP":30.6,"PRO":26.4,"ORT":8.9,"PED":4,"PAR":2.7,"CHI":4.2,"END":7.4,"TOD":7.9,"PRF":4,"IMG":1.7,"CON":1.2},"SLB":{"IMP":35.9,"PRO":19.8,"ORT":11.1,"PED":4.2,"PAR":4,"CHI":6.2,"END":7.2,"TOD":5.7,"PRF":3.2,"IMG":1.7,"CON":1},"CLR":{"ESF":1.2,"IMP":25.5,"PRO":23.8,"ORT":8.8,"PED":5.1,"PAR":2,"CHI":5.9,"END":8.8,"TOD":11.3,"PRF":3.9,"IMG":2.7,"CON":1},"DRB":{"CHI":4.2,"IMP":23.7,"PRO":20,"ORT":14.5,"PED":8.9,"ESD":2.7,"END":2.2,"TOD":13.5,"PRF":8.1,"IMG":1.5,"CON":0.7},"CTR":{"IMP":2.7,"PRO":10.9,"ORT":23.7,"CHI":5.2,"END":13.8,"TOD":29.2,"PRF":8.1,"IMG":5.2,"CON":1.2},"TGV":{"CHI":3.7,"IMP":35.4,"PRO":28.7,"ORT":6.6,"PED":1.2,"PAR":1.5,"END":7.9,"TOD":7.6,"PRF":4.2,"IMG":3.2},"FCS":{"CHI":4.9,"IMP":33.4,"PRO":9.5,"ORT":4.6,"PED":5.9,"PAR":3.4,"END":7.8,"TOD":18.6,"PRF":6.8,"IMG":5.1},"TOT":{"ESF":0.5,"IMP":30,"PRO":21.4,"ORT":9.3,"PED":4.9,"PAR":2.7,"CHI":4.9,"END":7.9,"TOD":10.1,"PRF":4.9,"IMG":2.7,"CON":0.7}},"Y":{"OLT":{"CON":1.5,"IMP":22.4,"PRO":18.4,"ORT":12.3,"PED":7.6,"PAR":2.9,"CHI":6.9,"END":8.8,"TOD":10.1,"PRF":5.7,"IMG":3.4},"GRG":{"CON":2,"ESF":0.7,"IMP":26.6,"PRO":26.4,"ORT":9.9,"PED":3.9,"PAR":3.7,"CHI":4.9,"END":8.1,"TOD":7.6,"PRF":4.2,"IMG":2},"SLB":{"IMP":33.4,"PRO":23,"ORT":10.9,"PED":4,"PAR":3.2,"CHI":6.2,"END":7.7,"TOD":5.7,"PRF":3,"IMG":1.7,"CON":1.2},"CLR":{"IMP":26.6,"PRO":23.7,"ORT":8.1,"PED":5.4,"PAR":3.5,"CHI":4.9,"END":9.1,"TOD":10.6,"PRF":4.2,"IMG":2.7,"CON":1.2},"DRB":{"CHI":3.9,"IMP":13.8,"PRO":18.2,"ORT":13.3,"PED":5.7,"PAR":1.7,"ESD":1.2,"END":8.1,"TOD":22.8,"PRF":8.6,"IMG":1.7,"CON":1},"CTR":{"IMP":8.4,"PRO":18,"ORT":17,"CHI":4.7,"END":14.6,"TOD":22.7,"PRF":8.4,"IMG":4.7,"CON":1.5},"TGV":{"CHI":4.7,"IMP":35.1,"PRO":18.2,"ORT":6.9,"PED":2.2,"PAR":2.2,"END":11.8,"TOD":10.8,"PRF":4.7,"IMG":2.7,"CON":0.7},"FCS":{"IMP":27.4,"PRO":7.4,"ORT":4.2,"PED":7.4,"PAR":3.5,"CHI":3.7,"END":9.9,"TOD":20.7,"PRF":8.6,"IMG":6.2,"CON":1},"TOT":{"CHI":5.4,"IMP":27.4,"PRO":21.2,"ORT":9.4,"PED":4.9,"PAR":3.2,"END":9.1,"TOD":10.6,"PRF":4.9,"IMG":2.7,"CON":1.2}}},"7":{"M":{"OLT":{"CON":2.2,"ESF":0.7,"IMP":28.1,"PRO":20.7,"ORT":12.4,"PED":6.1,"PAR":0.7,"CHI":5.6,"END":7.5,"TOD":9.2,"PRF":4.1,"IMG":2.7},"GRG":{"ESF":1.5,"IMP":18.8,"PRO":37.1,"ORT":9.4,"PED":3.2,"PAR":2.7,"CHI":5.4,"END":6.2,"TOD":7.9,"PRF":4.4,"IMG":2.2,"CON":1.2},"SLB":{"ESF":0.5,"IMP":25,"PRO":24.2,"ORT":12.3,"PED":4.9,"PAR":5.2,"CHI":6.9,"END":7.4,"TOD":6.2,"PRF":4.7,"IMG":2,"CON":0.7},"CLR":{"ESF":0.7,"IMP":31.8,"PRO":20.3,"ORT":9.1,"PED":4.7,"PAR":2.2,"CHI":5.9,"END":6.4,"TOD":9.6,"PRF":4.7,"IMG":3.4,"CON":1.2},"DRB":{"CHI":2.7,"IMP":9.9,"PRO":15.3,"ORT":22.8,"PED":8.1,"PAR":5.4,"ESD":2,"END":6.7,"TOD":17.7,"PRF":7.4,"IMG":2},"CTR":{"IMP":37.2,"PRO":13.6,"ORT":12.1,"CHI":7.7,"END":6.2,"TOD":13.1,"PRF":6.4,"IMG":3.7},"TGV":{"CHI":6.6,"IMP":29.1,"PRO":22.9,"ORT":7.4,"PED":3.7,"PAR":2.2,"END":10.6,"TOD":10.6,"PRF":4.4,"IMG":2.5},"FCS":{"IMP":32.1,"PRO":17,"ORT":3,"PED":5.2,"PAR":3.2,"CHI":3,"END":9.9,"TOD":16.3,"PRF":5.2,"IMG":4.4,"CON":0.7},"TOT":{"ESF":0.7,"IMP":27.1,"PRO":23.4,"ORT":9.6,"PED":4.4,"PAR":3,"CHI":5.2,"END":7.9,"TOD":10.3,"PRF":4.7,"IMG":3,"CON":0.7}},"Y":{"OLT":{"CON":1.2,"IMP":23.2,"PRO":18.9,"ORT":12.5,"PED":7.4,"PAR":2.7,"CHI":6.6,"END":8.6,"TOD":9.8,"PRF":5.7,"IMG":3.4},"GRG":{"CON":1.7,"ESF":0.7,"IMP":25.4,"PRO":28.2,"ORT":9.6,"PED":3.9,"PAR":3.7,"CHI":4.9,"END":7.9,"TOD":7.6,"PRF":4.2,"IMG":2.2},"SLB":{"IMP":32.2,"PRO":23,"ORT":10.9,"PED":4.2,"PAR":3.7,"CHI":6.2,"END":7.9,"TOD":5.7,"PRF":3.2,"IMG":2,"CON":1},"CLR":{"IMP":27.4,"PRO":23,"ORT":8.4,"PED":5.4,"PAR":3,"CHI":5.4,"END":8.6,"TOD":10.4,"PRF":4.2,"IMG":3,"CON":1.2},"DRB":{"CHI":3.9,"IMP":12.6,"PRO":17.5,"ORT":15.3,"PED":5.9,"PAR":2.2,"ESD":1.5,"END":7.6,"TOD":22.4,"PRF":8.6,"IMG":1.5,"CON":1},"CTR":{"IMP":14.3,"PRO":17.8,"ORT":16,"CHI":4.9,"END":12.8,"TOD":20.7,"PRF":8.1,"IMG":4.2,"CON":1.2},"TGV":{"CHI":4.9,"IMP":34.1,"PRO":19.2,"ORT":7.1,"PED":2.5,"PAR":2,"END":11.6,"TOD":10.8,"PRF":4.4,"IMG":2.7,"CON":0.7},"FCS":{"IMP":29.1,"PRO":10.1,"ORT":3.7,"PED":6.9,"PAR":3.2,"CHI":3.5,"END":10.1,"TOD":19.3,"PRF":7.4,"IMG":5.7,"CON":1},"TOT":{"CHI":5.2,"IMP":27.3,"PRO":21.7,"ORT":9.4,"PED":4.7,"PAR":3.4,"END":8.9,"TOD":10.6,"PRF":4.9,"IMG":2.7,"CON":1.2}}}};
@@ -162,11 +162,11 @@ const MIX_CLINICS = [['OLT','Oltenița'],['GRG','Giurgiu'],['SLB','Slobozia'],['
 const MIX_STACK = ['ESF','IMP','PRO','ORT','PED','PAR','CHI','ESD','END','TOD','PRF','IMG','CON'];
 
 // Helpers — period total per category
-const CIDX = () => 8 + ACT_MO;   // indexul lunii selectate in CAT_MONTHS (Ian 26 = 9)
+const CIDX = () => 11 + ACT_MO;   // indexul lunii selectate in CAT_MONTHS (Ian 26 = 12)
 const catVal = (key, period) => {
   const a = CAT_DATA[key], ci = CIDX();
   if (period === 'Month') return a[ci];
-  let s = 0; for (let i = 9; i <= ci; i++) s += a[i]; return s;   // YTD Ian - luna selectata
+  let s = 0; for (let i = 12; i <= ci; i++) s += a[i]; return s;   // YTD Ian - luna selectata
 };
 const catYoY = (key) => { const a = CAT_DATA[key], ci = CIDX(); return ci >= 12 ? gr(a[ci], a[ci-12]) : null; };
 // Mix share (% of total network) at a given month index
@@ -175,7 +175,9 @@ const catShare = (key, monthIdx) => {
   return monthTotal ? CAT_DATA[key][monthIdx] / monthTotal * 100 : 0;
 };
 // Δ pondere YoY (Apr 26 share − Apr 25 share, in percentage points)
-const catShareDeltaYoY = (key) => { const ci = CIDX(); return ci >= 12 ? catShare(key, ci) - catShare(key, ci-12) : null; };
+const catSumRange = (key, a0, a1) => { const a = CAT_DATA[key]; let s = 0; for (let i = a0; i <= a1; i++) s += (a[i] || 0); return s; };
+const catShareYTD = (key, y26) => { const ci = CIDX(); const a0 = y26 ? 12 : 0, a1 = y26 ? ci : ci - 12; const tot = CAT_LIST.reduce((s, c) => s + catSumRange(c.key, a0, a1), 0); return tot ? catSumRange(key, a0, a1) / tot * 100 : 0; };
+const catShareDeltaYoY = (key, period) => period === 'YTD' ? catShareYTD(key, true) - catShareYTD(key, false) : catShare(key, CIDX()) - catShare(key, CIDX() - 12);
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 const sum  = (arr) => (arr||[]).reduce((a,b)=>a+(b||0),0);
@@ -875,21 +877,23 @@ function CategoryTab({period}) {
     ...c,
     v:       catVal(c.key, period),
     yoy:     catYoY(c.key),
-    sApr26:  catShare(c.key, CIDX()),
-    sApr25:  CIDX()>=12 ? catShare(c.key, CIDX()-12) : null,
-    dPP:     catShareDeltaYoY(c.key),
+    sApr26:  period==='YTD' ? catShareYTD(c.key, true) : catShare(c.key, CIDX()),
+    sApr25:  period==='YTD' ? catShareYTD(c.key, false) : catShare(c.key, CIDX()-12),
+    dPP:     catShareDeltaYoY(c.key, period),
   })).sort((a,b) => b.v - a.v);
   const total = rows.reduce((s,r) => s + r.v, 0);
   rows.forEach(r => { r.pct = (r.v / total) * 100; });
 
   // Headline mix metrics — urmeaza luna selectata
-  const sIMP = catShare('IMP', CIDX()), sPRO = catShare('PRO', CIDX());
-  const sTOD = catShare('TOD', CIDX()), sEND = catShare('END', CIDX());
-  const sCON = catShare('CON', CIDX()), sEST = catShare('ESD', CIDX())+catShare('ESF', CIDX());
-  const dTOD = catShareDeltaYoY('TOD');
-  const dIMP = catShareDeltaYoY('IMP');
-  const dPRO = catShareDeltaYoY('PRO');
-  const dEND = catShareDeltaYoY('END');
+  const shNow = (k) => period==='YTD' ? catShareYTD(k, true) : catShare(k, CIDX());
+  const shPrev = (k) => period==='YTD' ? catShareYTD(k, false) : catShare(k, CIDX()-12);
+  const sIMP = shNow('IMP'), sPRO = shNow('PRO');
+  const sTOD = shNow('TOD'), sEND = shNow('END');
+  const sCON = shNow('CON'), sEST = shNow('ESD')+shNow('ESF');
+  const dTOD = catShareDeltaYoY('TOD', period);
+  const dIMP = catShareDeltaYoY('IMP', period);
+  const dPRO = catShareDeltaYoY('PRO', period);
+  const dEND = catShareDeltaYoY('END', period);
   // Implant mix correction Mar→Apr (real mix shift, not network expansion)
   const sIMPmar = catShare('IMP', CIDX()-1);
   const dIMPmom = sIMP - sIMPmar;
@@ -924,11 +928,11 @@ function CategoryTab({period}) {
 
     {/* CFO Analysis — mix-aware framing */}
     <Card style={{marginBottom:16,background:'#FAFAFA',border:`1px solid #F0F0F0`}}>
-      <Sec>Analiză Mix — {MONTHS[ACT_MO-1]} 2026 (pondere în cifra de afaceri totală)</Sec>
-      <Pill type="green"><b>Implantologie + Protetică = {(sIMP+sPRO).toFixed(1)}%</b> din cifra de afaceri ({CAT_MONTHS[CIDX()]}) — cele două motoare comerciale ale rețelei. {CIDX()>=12 ? <span>Combinat, mix-ul a variat cu {(dIMP+dPRO)>0?'+':''}{(dIMP+dPRO).toFixed(1)}pp YoY (de la {(catShare('IMP',CIDX()-12)+catShare('PRO',CIDX()-12)).toFixed(1)}% la {(sIMP+sPRO).toFixed(1)}%) — {(dIMP+dPRO)<0?'semn că mix-ul se diversifică':'motoarele comerciale își consolidează ponderea'}.</span> : <span>Comparația YoY pe categorii este disponibilă din Apr 2026 — fereastra de date începe în Apr 25.</span>}</Pill>
-      {CIDX()>=12 && <Pill type="green"><b>Tratamente odontale: {dFmt(dTOD)} pondere YoY</b> (de la {catShare('TOD',CIDX()-12).toFixed(1)}% la {sTOD.toFixed(1)}%) — cel mai mare câștigător de mix. Endodonția la microscop urmează cu {dFmt(dEND)} ({sEND.toFixed(1)}%). Semnal pozitiv pe servicii core și complexitate crescută.</Pill>}
-      <Pill type={dIMPmom < -2 ? 'amber' : 'green'}><b>Implantologie: pondere {dFmt(dIMP)} YoY</b> ({CIDX()>=12 ? catShare('IMP',CIDX()-12).toFixed(1)+'%' : '—'} → {sIMP.toFixed(1)}%). Variație lunară de mix în {CAT_MONTHS[CIDX()]}: {dFmt(dIMPmom)} față de {CAT_MONTHS[CIDX()-1]} ({sIMPmar.toFixed(1)}%). Recomand verificare pipeline CT &amp; Plan Tratament pentru luna următoare.</Pill>
-      <Pill type="green"><b>Estetică facială — categorie nouă (din Iul 2026):</b> mezoterapie, volumizare buze etc., realizată de medic dermatolog. {fmt(catVal('ESF',period))} în {catPLabel} ({catShare('ESF',CIDX()).toFixed(1)}% din mix) — segment tangențial dentar, cu potențial de creștere. Estetică (dentară + facială) + Consultații = {(sEST+sCON).toFixed(1)}% din mix.</Pill>
+      <Sec>Analiză Mix — {catPLabel} (pondere în cifra de afaceri totală)</Sec>
+      <Pill type="green"><b>Implantologie + Protetică = {(sIMP+sPRO).toFixed(1)}%</b> din cifra de afaceri ({CAT_MONTHS[CIDX()]}) — cele două motoare comerciale ale rețelei. {CIDX()>=12 ? <span>Combinat, mix-ul a variat cu {(dIMP+dPRO)>0?'+':''}{(dIMP+dPRO).toFixed(1)}pp YoY (de la {(shPrev('IMP')+shPrev('PRO')).toFixed(1)}% la {(sIMP+sPRO).toFixed(1)}%) — {(dIMP+dPRO)<0?'semn că mix-ul se diversifică':'motoarele comerciale își consolidează ponderea'}.</span> : <span>Comparația YoY pe categorii este disponibilă din Apr 2026 — fereastra de date începe în Apr 25.</span>}</Pill>
+      {CIDX()>=12 && <Pill type="green"><b>Tratamente odontale: {dFmt(dTOD)} pondere YoY</b> (de la {shPrev('TOD').toFixed(1)}% la {sTOD.toFixed(1)}%) — cel mai mare câștigător de mix. Endodonția la microscop urmează cu {dFmt(dEND)} ({sEND.toFixed(1)}%). Semnal pozitiv pe servicii core și complexitate crescută.</Pill>}
+      <Pill type={dIMPmom < -2 ? 'amber' : 'green'}><b>Implantologie: pondere {dFmt(dIMP)} YoY</b> ({shPrev('IMP').toFixed(1)}% → {sIMP.toFixed(1)}%). Variație lunară de mix în {CAT_MONTHS[CIDX()]}: {dFmt(dIMPmom)} față de {CAT_MONTHS[CIDX()-1]} ({sIMPmar.toFixed(1)}%). Recomand verificare pipeline CT &amp; Plan Tratament pentru luna următoare.</Pill>
+      <Pill type="green"><b>Estetică facială — categorie nouă (din Iul 2026):</b> mezoterapie, volumizare buze etc., realizată de medic dermatolog. {fmt(catVal('ESF',period))} în {catPLabel} ({shNow('ESF').toFixed(1)}% din mix) — segment tangențial dentar, cu potențial de creștere. Estetică (dentară + facială) + Consultații = {(sEST+sCON).toFixed(1)}% din mix.</Pill>
     </Card>
 
     {/* Two-column charts */}
@@ -948,7 +952,7 @@ function CategoryTab({period}) {
         </ResponsiveContainer>
       </Card>
       <Card>
-        <Sec>Trend Top 4 Categorii — Pondere în Mix (%) · Apr 25 → {CAT_MONTHS[CAT_MONTHS.length-1]}</Sec>
+        <Sec>Trend Top 4 Categorii — Pondere în Mix (%) · {CAT_MONTHS[0]} → {CAT_MONTHS[CAT_MONTHS.length-1]}</Sec>
         <ResponsiveContainer width="100%" height={340}>
           <LineChart data={trend} margin={{top:5,right:15,bottom:5,left:5}}>
             <CartesianGrid strokeDasharray="3 3" stroke="#F0F0F0" vertical={false}/>
@@ -1009,8 +1013,8 @@ function CategoryTab({period}) {
               <th style={{padding:'8px 10px',textAlign:'left',fontWeight:700,color:P.primary,fontSize:10}}>Categorie</th>
               <th style={{padding:'8px 10px',textAlign:'right',fontWeight:700,color:P.primary,fontSize:10}}>{period==='Month'?CAT_MONTHS[CIDX()]:'YTD Ian–'+MONTHS[ACT_MO-1]+' 26'} (RON)</th>
               <th style={{padding:'8px 10px',textAlign:'right',fontWeight:700,color:P.primary,fontSize:10}}>% din total</th>
-              <th style={{padding:'8px 10px',textAlign:'right',fontWeight:700,color:P.primary,fontSize:10}}>{CIDX()>=12?'Pondere '+CAT_MONTHS[CIDX()-12]:'Pondere an-1'}</th>
-              <th style={{padding:'8px 10px',textAlign:'right',fontWeight:700,color:P.primary,fontSize:10}}>{'Pondere '+CAT_MONTHS[CIDX()]}</th>
+              <th style={{padding:'8px 10px',textAlign:'right',fontWeight:700,color:P.primary,fontSize:10}}>{period==='YTD' ? 'Pondere YTD 25' : 'Pondere '+CAT_MONTHS[CIDX()-12]}</th>
+              <th style={{padding:'8px 10px',textAlign:'right',fontWeight:700,color:P.primary,fontSize:10}}>{period==='YTD' ? 'Pondere YTD 26' : 'Pondere '+CAT_MONTHS[CIDX()]}</th>
               <th style={{padding:'8px 10px',textAlign:'right',fontWeight:700,color:P.primary,fontSize:10}}>Δ pondere YoY</th>
             </tr>
           </thead>
@@ -1042,7 +1046,7 @@ function CategoryTab({period}) {
         </table>
       </div>
       <div style={{fontSize:10,color:P.muted,marginTop:10,fontStyle:'italic',lineHeight:1.5}}>
-        Sursă: Raport săptămânal — Trend by treatment (achitat), actualizat până în <b>Iul 2026</b>. Valorile și ponderile urmează luna/perioada selectată; Δ pondere YoY compară luna selectată cu aceeași lună din 2025 (puncte procentuale, pp).
+        Sursă: Raport săptămânal — Trend by treatment (achitat), actualizat până în <b>Iul 2026</b>. Valorile și ponderile urmează luna/perioada selectată. Δ pondere YoY urmează comutatorul: pe Lună compară luna selectată cu aceeași lună din 2025, pe YTD compară cumulatul Ian–luna selectată 2026 vs 2025 (puncte procentuale, pp). Fereastra de date: Ian 25 → Iul 26.
         Folosirea ponderii izolează evoluția mix-ului de expansiunea rețelei (TGV deschis mid-2025, FCS Mar 2026, BRL Nov 2026 — clinici non-comparabile YoY).
         Suma pe categorii poate diferi ușor de cifra de afaceri din tab-ul Rețea (achitat vs facturat).
       </div>
