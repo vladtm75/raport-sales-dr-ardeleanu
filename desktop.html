@@ -475,16 +475,15 @@ const RAMP = [
   { op:'Dr. Ardeleanu', clinic:'Târgoviște', start:2025, group:'DA', yoy2423:null,yoy2524:null,yoy2625:348,years:[1620538,5641963,null,null,null,null,null,null,null,null,null,null] },
   { op:'Dr. Ardeleanu', clinic:'Focșani',    start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,years:[3715480,null,null,null,null,null,null,null,null,null,null,null] },
   { op:'Dr. Ardeleanu', clinic:'Brăila',     start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,years:[394681,null,null,null,null,null,null,null,null,null,null,null] },
-  // Concurență — bilanțuri oficiale (listafirme/topfirme/risco), serii per entitate juridică, 2025 = ultimul an raportat
-  { op:'Prodent Gruia', clinic:'Câmpina',    start:2014, group:'C', yoy2423:13, yoy2524:17, yoy2625:null,years:[92195,133166,350636,622776,1043275,1783170,2714839,5199138,5786796,7048521,7992963,9355789] },
-  { op:'Dental Blue',   clinic:'Slobozia+Tănădărei',start:2010,group:'C',yoy2423:61,yoy2524:14,yoy2625:null,years:[299611,1103819,1579398,2115173,3258266,3919676,3211620,4078290,4495819,4515146,7272637,8275528] },
-  { op:'Dental Blue',   clinic:'Fetești',    start:2017, group:'C', yoy2423:-80,yoy2524:-20,yoy2625:null,years:[482901,5880,600,500,500,726631,2229031,442541,355243,null,null,null] },
-  { op:'Elida Dent',    clinic:'Târgoviște', start:2015, group:'C', yoy2423:143,yoy2524:47, yoy2625:null,years:[77240,235000,404030,688640,872820,2027240,2440210,2435560,5907461,8674481,null,null] },
+  // Concurență — bilanțuri oficiale; unde clinica nu se poate izola per CUI se prezintă grupul (Dental Blue = Medical Dental Blue SRL + Dr. Cohen SRL cumulat)
+  { op:'Prodent Gruia', clinic:'Grup: Câmpina+București',start:2014, group:'C', yoy2423:13, yoy2524:17, yoy2625:null,years:[92195,133166,350636,622776,1043275,1783170,2714839,5199138,5786796,7048521,7992963,9355789] },
+  { op:'Dental Blue',   clinic:'Grup: Slobozia+Țăndărei+Fetești',start:2010,group:'C',yoy2423:14,yoy2524:12,yoy2625:null,years:[299611,1103819,1579398,2598074,3264146,3920276,3212120,4078790,5222450,6744177,7715178,8630771] },
+  { op:'Elida Dent',    clinic:'Grup: 2 clinici Târgoviște',start:2015, group:'C', yoy2423:143,yoy2524:47, yoy2625:null,units:13,years:[77240,235000,404030,688640,872820,2027240,2440210,2435560,5907461,8674481,null,null] },
   { op:'CM Prolife',    clinic:'Târgoviște', start:2005, group:'C', yoy2423:18, yoy2524:2,  yoy2625:null,years:[2416647,2210703,2319557,2509769,2456074,3042141,2428307,3630317,4230868,5515959,6535903,6643557] },
   { op:'Dentrust',      clinic:'Focșani #1', start:2016, group:'C', yoy2423:24, yoy2524:53, yoy2625:null,years:[502105,1435519,4621622,4015826,3135845,4415417,6080608,5299040,6583020,10052855,null,null] },
   { op:'Dentrust',      clinic:'Focșani #2', start:2023, group:'C', yoy2423:79, yoy2524:35, yoy2625:null,years:[2376496,4253734,5737403,null,null,null,null,null,null,null,null,null] },
-  { op:'Edent',         clinic:'Tulcea',     start:2016, group:'C', yoy2423:13, yoy2524:14, yoy2625:null,years:[451646,1619832,2861556,3690160,3793237,5506669,5864757,6584853,7414484,8448786,null,null] },
-  { op:'Edent',         clinic:'București',  start:2022, group:'C', yoy2423:29, yoy2524:18, yoy2625:null,years:[1765302,5656010,7302800,8584686,null,null,null,null,null,null,null,null] },
+  { op:'Edent',         clinic:'Tulcea',     start:2016, group:'C', yoy2423:13, yoy2524:14, yoy2625:null,units:4,years:[451646,1619832,2861556,3690160,3793237,5506669,5864757,6584853,7414484,8448786,null,null] },
+  { op:'Edent',         clinic:'București',  start:2022, group:'C', yoy2423:29, yoy2524:18, yoy2625:null,units:6,years:[1765302,5656010,7302800,8584686,null,null,null,null,null,null,null,null] },
   { op:'Unident',       clinic:'Tulcea',     start:2006, group:'C', yoy2423:57, yoy2524:4,  yoy2625:null,years:[434272,1028949,2082986,2241793,4425339,4318786,4767643,5000498,4974357,7632421,12012873,12474884] },
   { op:'Unident',       clinic:'Galați',     start:2019, group:'C', yoy2423:-4, yoy2524:49, yoy2625:null,years:[4543687,4653100,4762119,6290208,7207141,6890990,10299128,null,null,null,null,null] },
   { op:'Unident',       clinic:'Buzău',      start:2019, group:'C', yoy2423:5,  yoy2524:28, yoy2625:null,years:[708585,1071157,3146755,2247194,2249558,2355831,3007904,null,null,null,null,null] },
@@ -539,13 +538,14 @@ function RampupTab() {
       {rows.map((r,i)=>{
         const isHL = highlight===`${r.op}-${r.clinic}`;
         const maxVal = Math.max(...r.years.filter(x=>x!=null));
+        const lastV = r.years.filter(x=>x!=null).slice(-1)[0];
         return (
           <div key={i}
             onMouseEnter={()=>setHighlight(`${r.op}-${r.clinic}`)}
             onMouseLeave={()=>setHighlight(null)}
             style={{
               display:'grid',
-              gridTemplateColumns:'130px 160px 44px 44px repeat(12,1fr) 68px 68px 68px',
+              gridTemplateColumns:'130px 160px 44px 44px repeat(12,1fr) 68px 68px 68px 74px',
               borderBottom:`1px solid #F0F0F0`,
               background: isHL?(isDA?`${P.primary}08`:'#F8F8F8'):(i%2===0?P.white:'#FAFAFA'),
               transition:'background 0.1s',
@@ -556,7 +556,7 @@ function RampupTab() {
             {/* Clinic */}
             <div style={{padding:'9px 8px',fontSize:11,fontWeight:600,color:isDA?P.primary:'#333'}}>
               <div>{r.clinic}</div>
-              <div style={{fontSize:9,color:P.muted,marginTop:1}}>Start {r.start}</div>
+              <div style={{fontSize:9,color:P.muted,marginTop:1}}>Start {r.start}{r.units ? ' · '+r.units+' unituri' : ''}</div>
             </div>
             {/* Start year badge */}
             <div style={{padding:'9px 4px',textAlign:'center'}}>
@@ -589,6 +589,14 @@ function RampupTab() {
             <div style={{padding:'7px 6px',textAlign:'center'}}>{yoyBadge(r.yoy2423)}</div>
             <div style={{padding:'7px 6px',textAlign:'center'}}>{yoyBadge(r.yoy2524)}</div>
             <div style={{padding:'7px 6px',textAlign:'center'}}>{yoyBadge(r.yoy2625,'lg')}</div>
+            <div style={{padding:'7px 6px',textAlign:'center'}}>
+              {r.units && lastV ? (
+                <div>
+                  <div style={{fontSize:10,fontWeight:700,color:isDA?P.primary:'#5B3F8A'}}>{fmtM(lastV/r.units)}</div>
+                  <div style={{fontSize:8,color:P.muted}}>{r.units} unituri</div>
+                </div>
+              ) : <span style={{color:'#CCC',fontSize:9}}>—</span>}
+            </div>
           </div>
         );
       })}
@@ -604,7 +612,7 @@ function RampupTab() {
         <div style={{background:P.primary,padding:'12px 16px',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
           <div>
             <div style={{fontSize:13,fontWeight:700,color:P.white,fontFamily:"'Playfair Display',serif"}}>Ramp-up Comparativ · Dr. Ardeleanu vs Concurență</div>
-            <div style={{fontSize:10,color:'rgba(255,255,255,0.5)',marginTop:2}}>Vânzări anuale de la Year 0 (an incomplet de deschidere) · RON</div>
+            <div style={{fontSize:10,color:'rgba(255,255,255,0.5)',marginTop:2}}>Vânzări anuale de la Year 0 (an incomplet de deschidere) · RON · CA/Unit = ultimul an raportat / nr. unituri</div>
           </div>
           <div style={{display:'flex',gap:16,alignItems:'center'}}>
             {[['Peak',P.wheat],['Ultimul an',P.olive],['DA','rgba(255,255,255,0.7)'],['Concurență','#AAA']].map(([l,c])=>(
@@ -619,7 +627,7 @@ function RampupTab() {
         {/* Column headers */}
         <div style={{
           display:'grid',
-          gridTemplateColumns:'130px 160px 44px 44px repeat(12,1fr) 68px 68px 68px',
+          gridTemplateColumns:'130px 160px 44px 44px repeat(12,1fr) 68px 68px 68px 74px',
           background:'#F8F4F4',
           borderBottom:`2px solid ${P.primary}`,
         }}>
@@ -633,6 +641,7 @@ function RampupTab() {
           <div style={{padding:'8px 6px',textAlign:'center',fontSize:9,fontWeight:700,color:'#7B5EA7'}}>24/23</div>
           <div style={{padding:'8px 6px',textAlign:'center',fontSize:9,fontWeight:700,color:'#5B3F8A'}}>25/24</div>
           <div style={{padding:'8px 6px',textAlign:'center',fontSize:9,fontWeight:700,color:'#2D7D46'}}>26/25</div>
+          <div style={{padding:'8px 6px',textAlign:'center',fontSize:9,fontWeight:700,color:P.primary}}>CA/Unit</div>
         </div>
 
         <TableSection rows={daRows} title="Dr. Ardeleanu Dental Clinics" color={P.primary} isDA={true}/>
