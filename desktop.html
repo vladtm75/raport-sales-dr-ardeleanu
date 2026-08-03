@@ -21,7 +21,7 @@
 <a id="switchbtn" href="mobile.html">📱 Varianta mobilă</a>
 <script type="text/babel" data-presets="react">
 const { useState } = React;
-const { LineChart, Line, BarChart, Bar, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Cell, ComposedChart } = Recharts;
+const { LineChart, Line, BarChart, Bar, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Cell, ComposedChart, LabelList } = Recharts;
 // ─── Brand Palette ────────────────────────────────────────────────────────────
 const P = {
   primary:    '#7B1C16',
@@ -138,7 +138,8 @@ const CAT_LIST = [
   {key:'PAR', name:'Parodontologie',           color:'#C76A6A'},
   {key:'IMG', name:'Imagistică dentară',       color:'#E8B98A'},
   {key:'CON', name:'Consultații',              color:'#A8C5DA'},
-  {key:'EST', name:'Estetică dentară',         color:'#3F8B7E'},
+  {key:'ESD', name:'Estetică dentară',         color:'#3F8B7E'},
+  {key:'ESF', name:'Estetică facială',         color:'#787370'},
 ];
 const CAT_DATA = {
   IMP:[613000,657000,810000,941000,674000,929000,954000,1030000,444000,984000,917000,1110000,882000,951000,1246000,1248000],
@@ -152,8 +153,14 @@ const CAT_DATA = {
   PAR:[ 47000, 70000, 74000, 48000, 54000, 87000, 77000, 90000, 55000,104000,117000,122000,132000,106000,104000,127000],
   IMG:[ 65000, 81000, 69000, 95000, 97000, 89000, 90000, 90000, 60000,105000,101000,122000,110000,115000,124000,144000],
   CON:[ 40000, 44000, 42000, 52000, 55000, 54000, 41000, 41000, 38000, 56000, 53000, 55000, 32000,30000,31000,35000],
-  EST:[ 25000, 22000, 21000, 14000, 25000,  7000, 28000, 13000, 14000, 14000,  9000, 19000, 14000,13000,23000,31000],
+  ESD:[null,null,null,3000,10000,2000,3000,1000,4000,7000,3000,6000,5000,7000,10000,9000],
+  ESF:[null,null,null,12000,15000,5000,25000,12000,11000,7000,6000,14000,9000,6000,13000,22000],
 };
+// Mix pe clinici — sursa: slide Sales Split din raportul lunar (procente per clinica)
+const CLINIC_MIX = {"6":{"M":{"OLT":{"CON":1.5,"IMP":23.9,"PRO":19.7,"ORT":12.2,"PED":9.0,"PAR":1.7,"CHI":7.1,"END":8.3,"TOD":6.6,"PRF":6.1,"IMG":3.9},"GRG":{"ESF":1.0,"IMP":30.6,"PRO":26.4,"ORT":8.9,"PED":4.0,"PAR":2.7,"CHI":4.2,"END":7.4,"TOD":7.9,"PRF":4.0,"IMG":1.7,"CON":1.2},"SLB":{"IMP":35.9,"PRO":19.8,"ORT":11.1,"PED":4.2,"PAR":4.0,"CHI":6.2,"END":7.2,"TOD":5.7,"PRF":3.2,"IMG":1.7,"CON":1.0},"CLR":{"ESF":1.2,"IMP":25.5,"PRO":23.8,"ORT":8.8,"PED":5.1,"PAR":2.0,"CHI":5.9,"END":8.8,"TOD":11.3,"PRF":3.9,"IMG":2.7,"CON":1.0},"DRB":{"CHI":4.2,"IMP":23.7,"PRO":20.0,"ORT":14.5,"PED":8.9,"ESD":2.7,"END":2.2,"TOD":13.5,"PRF":8.1,"IMG":1.5,"CON":0.7},"CTR":{"IMP":2.7,"PRO":10.9,"ORT":23.7,"CHI":5.2,"END":13.8,"TOD":29.2,"PRF":8.1,"IMG":5.2,"CON":1.2},"TGV":{"CHI":3.7,"IMP":35.4,"PRO":28.7,"ORT":6.6,"PED":1.2,"PAR":1.5,"END":7.9,"TOD":7.6,"PRF":4.2,"IMG":3.2},"FCS":{"CHI":4.9,"IMP":33.4,"PRO":9.5,"ORT":4.6,"PED":5.9,"PAR":3.4,"END":7.8,"TOD":18.6,"PRF":6.8,"IMG":5.1},"TOT":{"ESF":0.5,"IMP":30.0,"PRO":21.4,"ORT":9.3,"PED":4.9,"PAR":2.7,"CHI":4.9,"END":7.9,"TOD":10.1,"PRF":4.9,"IMG":2.7,"CON":0.7}},"Y":{"OLT":{"CON":1.5,"IMP":22.4,"PRO":18.4,"ORT":12.3,"PED":7.6,"PAR":2.9,"CHI":6.9,"END":8.8,"TOD":10.1,"PRF":5.7,"IMG":3.4},"GRG":{"CON":2.0,"ESF":0.7,"IMP":26.6,"PRO":26.4,"ORT":9.9,"PED":3.9,"PAR":3.7,"CHI":4.9,"END":8.1,"TOD":7.6,"PRF":4.2,"IMG":2.0},"SLB":{"IMP":33.4,"PRO":23.0,"ORT":10.9,"PED":4.0,"PAR":3.2,"CHI":6.2,"END":7.7,"TOD":5.7,"PRF":3.0,"IMG":1.7,"CON":1.2},"CLR":{"IMP":26.6,"PRO":23.7,"ORT":8.1,"PED":5.4,"PAR":3.5,"CHI":4.9,"END":9.1,"TOD":10.6,"PRF":4.2,"IMG":2.7,"CON":1.2},"DRB":{"CHI":3.9,"IMP":13.8,"PRO":18.2,"ORT":13.3,"PED":5.7,"PAR":1.7,"ESD":1.2,"END":8.1,"TOD":22.8,"PRF":8.6,"IMG":1.7,"CON":1.0},"CTR":{"IMP":8.4,"PRO":18.0,"ORT":17.0,"CHI":4.7,"END":14.6,"TOD":22.7,"PRF":8.4,"IMG":4.7,"CON":1.5},"TGV":{"CHI":4.7,"IMP":35.1,"PRO":18.2,"ORT":6.9,"PED":2.2,"PAR":2.2,"END":11.8,"TOD":10.8,"PRF":4.7,"IMG":2.7,"CON":0.7},"FCS":{"IMP":27.4,"PRO":7.4,"ORT":4.2,"PED":7.4,"PAR":3.5,"CHI":3.7,"END":9.9,"TOD":20.7,"PRF":8.6,"IMG":6.2,"CON":1.0},"TOT":{"CHI":5.4,"IMP":27.4,"PRO":21.2,"ORT":9.4,"PED":4.9,"PAR":3.2,"END":9.1,"TOD":10.6,"PRF":4.9,"IMG":2.7,"CON":1.2}}},"7":{"M":{"OLT":{"CON":2.2,"ESF":0.7,"IMP":28.1,"PRO":20.7,"ORT":12.4,"PED":6.1,"PAR":0.7,"CHI":5.6,"END":7.5,"TOD":9.2,"PRF":4.1,"IMG":2.7},"GRG":{"ESF":1.5,"IMP":18.8,"PRO":37.1,"ORT":9.4,"PED":3.2,"PAR":2.7,"CHI":5.4,"END":6.2,"TOD":7.9,"PRF":4.4,"IMG":2.2,"CON":1.2},"SLB":{"ESF":0.5,"IMP":25.0,"PRO":24.2,"ORT":12.3,"PED":4.9,"PAR":5.2,"CHI":6.9,"END":7.4,"TOD":6.2,"PRF":4.7,"IMG":2.0,"CON":0.7},"CLR":{"ESF":0.7,"IMP":31.8,"PRO":20.3,"ORT":9.1,"PED":4.7,"PAR":2.2,"CHI":5.9,"END":6.4,"TOD":9.6,"PRF":4.7,"IMG":3.4,"CON":1.2},"DRB":{"CHI":2.7,"IMP":9.9,"PRO":15.3,"ORT":22.8,"PED":8.1,"PAR":5.4,"ESD":2.0,"END":6.7,"TOD":17.7,"PRF":7.4,"IMG":2.0},"CTR":{"IMP":37.2,"PRO":13.6,"ORT":12.1,"CHI":7.7,"END":6.2,"TOD":13.1,"PRF":6.4,"IMG":3.7},"TGV":{"CHI":6.6,"IMP":29.1,"PRO":22.9,"ORT":7.4,"PED":3.7,"PAR":2.2,"END":10.6,"TOD":10.6,"PRF":4.4,"IMG":2.5},"FCS":{"IMP":32.1,"PRO":17.0,"ORT":3.0,"PED":5.2,"PAR":3.2,"CHI":3.0,"END":9.9,"TOD":16.3,"PRF":5.2,"IMG":4.4,"CON":0.7},"TOT":{"ESF":0.7,"IMP":27.1,"PRO":23.4,"ORT":9.6,"PED":4.4,"PAR":3.0,"CHI":5.2,"END":7.9,"TOD":10.3,"PRF":4.7,"IMG":3.0,"CON":0.7}},"Y":{"OLT":{"CON":1.2,"IMP":23.2,"PRO":18.9,"ORT":12.5,"PED":7.4,"PAR":2.7,"CHI":6.6,"END":8.6,"TOD":9.8,"PRF":5.7,"IMG":3.4},"GRG":{"CON":1.7,"ESF":0.7,"IMP":25.4,"PRO":28.2,"ORT":9.6,"PED":3.9,"PAR":3.7,"CHI":4.9,"END":7.9,"TOD":7.6,"PRF":4.2,"IMG":2.2},"SLB":{"IMP":32.2,"PRO":23.0,"ORT":10.9,"PED":4.2,"PAR":3.7,"CHI":6.2,"END":7.9,"TOD":5.7,"PRF":3.2,"IMG":2.0,"CON":1.0},"CLR":{"IMP":27.4,"PRO":23.0,"ORT":8.4,"PED":5.4,"PAR":3.0,"CHI":5.4,"END":8.6,"TOD":10.4,"PRF":4.2,"IMG":3.0,"CON":1.2},"DRB":{"CHI":3.9,"IMP":12.6,"PRO":17.5,"ORT":15.3,"PED":5.9,"PAR":2.2,"ESD":1.5,"END":7.6,"TOD":22.4,"PRF":8.6,"IMG":1.5,"CON":1.0},"CTR":{"IMP":14.3,"PRO":17.8,"ORT":16.0,"CHI":4.9,"END":12.8,"TOD":20.7,"PRF":8.1,"IMG":4.2,"CON":1.2},"TGV":{"CHI":4.9,"IMP":34.1,"PRO":19.2,"ORT":7.1,"PED":2.5,"PAR":2.0,"END":11.6,"TOD":10.8,"PRF":4.4,"IMG":2.7,"CON":0.7},"FCS":{"IMP":29.1,"PRO":10.1,"ORT":3.7,"PED":6.9,"PAR":3.2,"CHI":3.5,"END":10.1,"TOD":19.3,"PRF":7.4,"IMG":5.7,"CON":1.0},"TOT":{"CHI":5.2,"IMP":27.3,"PRO":21.7,"ORT":9.4,"PED":4.7,"PAR":3.4,"END":8.9,"TOD":10.6,"PRF":4.9,"IMG":2.7,"CON":1.2}}}};
+const MIX_CLINICS = [['OLT','Oltenița'],['GRG','Giurgiu'],['SLB','Slobozia'],['CLR','Călărași'],['DRB','Dorobanți'],['CTR','Cotroceni'],['TGV','Târgoviște'],['FCS','Focșani'],['TOT','Total Rețea']];
+const MIX_STACK = ['ESF','IMP','PRO','ORT','PED','PAR','CHI','ESD','END','TOD','PRF','IMG','CON'];
+
 // Helpers — period total per category
 const CIDX = () => 8 + ACT_MO;   // indexul lunii selectate in CAT_MONTHS (Ian 26 = 9)
 const catVal = (key, period) => {
@@ -856,6 +863,12 @@ function NetHistory() {
 }
 
 // ─── Category Tab ─────────────────────────────────────────────────────────────
+class SafeBox extends React.Component {
+  constructor(p){ super(p); this.state = {err:false}; }
+  static getDerivedStateFromError(){ return {err:true}; }
+  render(){ return this.state.err ? <div style={{fontSize:11,color:'#888',padding:10}}>Secțiunea nu a putut fi afișată.</div> : this.props.children; }
+}
+
 function CategoryTab({period}) {
   // Period values are still useful for the snapshot bar chart and the table
   const rows = CAT_LIST.map(c => ({
@@ -872,7 +885,7 @@ function CategoryTab({period}) {
   // Headline mix metrics — urmeaza luna selectata
   const sIMP = catShare('IMP', CIDX()), sPRO = catShare('PRO', CIDX());
   const sTOD = catShare('TOD', CIDX()), sEND = catShare('END', CIDX());
-  const sCON = catShare('CON', CIDX()), sEST = catShare('EST', CIDX());
+  const sCON = catShare('CON', CIDX()), sEST = catShare('ESD', CIDX())+catShare('ESF', CIDX());
   const dTOD = catShareDeltaYoY('TOD');
   const dIMP = catShareDeltaYoY('IMP');
   const dPRO = catShareDeltaYoY('PRO');
@@ -906,7 +919,7 @@ function CategoryTab({period}) {
       <KPI    label={`#2 — ${rows[1].name}`} value={fmt(rows[1].v)} sub={`${rows[1].pct.toFixed(1)}% din total`}/>
       <KPI    label={`#3 — ${rows[2].name}`} value={fmt(rows[2].v)} sub={`${rows[2].pct.toFixed(1)}% din total`}/>
       <KPI    label="Top mix gainer YoY"   value={dFmt(dTOD)}      subColor={dCol(dTOD)} sub={`Tratamente odontale · ${sTOD.toFixed(1)}%`}/>
-      <KPI    label="Categorii active"     value="12"              sub="cu venituri non-zero"/>
+      <KPI    label="Categorii active"     value="13"              sub="cu venituri non-zero"/>
     </div>
 
     {/* CFO Analysis — mix-aware framing */}
@@ -915,7 +928,7 @@ function CategoryTab({period}) {
       <Pill type="green"><b>Implantologie + Protetică = {(sIMP+sPRO).toFixed(1)}%</b> din cifra de afaceri ({CAT_MONTHS[CIDX()]}) — cele două motoare comerciale ale rețelei. Combinat, mix-ul a variat cu {(dIMP+dPRO)>0?'+':''}{(dIMP+dPRO).toFixed(1)}pp YoY (de la {(catShare('IMP',CIDX()-12)+catShare('PRO',CIDX()-12)).toFixed(1)}% la {(sIMP+sPRO).toFixed(1)}%) — {(dIMP+dPRO)<0?'semn că mix-ul se diversifică':'motoarele comerciale își consolidează ponderea'}.</Pill>
       <Pill type="green"><b>Tratamente odontale: {dFmt(dTOD)} pondere YoY</b> (de la {catShare('TOD',CIDX()-12).toFixed(1)}% la {sTOD.toFixed(1)}%) — cel mai mare câștigător de mix. Endodonția la microscop urmează cu {dFmt(dEND)} ({sEND.toFixed(1)}%). Semnal pozitiv pe servicii core și complexitate crescută.</Pill>
       <Pill type={dIMPmom < -2 ? 'amber' : 'green'}><b>Implantologie: pondere {dFmt(dIMP)} YoY</b> ({catShare('IMP',CIDX()-12).toFixed(1)}% → {sIMP.toFixed(1)}%). Variație lunară de mix în {CAT_MONTHS[CIDX()]}: {dFmt(dIMPmom)} față de {CAT_MONTHS[CIDX()-1]} ({sIMPmar.toFixed(1)}%). Recomand verificare pipeline CT &amp; Plan Tratament pentru luna următoare.</Pill>
-      <Pill type="amber"><b>Estetică + Consultații = {(sEST+sCON).toFixed(1)}%</b> din cifra de afaceri ({CAT_MONTHS[CIDX()]}). Estetica: {dFmt(catShareDeltaYoY('EST'))} pondere YoY — categorie cu potențial de activare prin upselling, pachete dedicate și marketing pe segment.</Pill>
+      <Pill type="green"><b>Estetică facială — categorie nouă (din Iul 2026):</b> mezoterapie, volumizare buze etc., realizată de medic dermatolog. {fmt(catVal('ESF',period))} în {catPLabel} ({catShare('ESF',CIDX()).toFixed(1)}% din mix) — segment tangențial dentar, cu potențial de creștere. Estetică (dentară + facială) + Consultații = {(sEST+sCON).toFixed(1)}% din mix.</Pill>
     </Card>
 
     {/* Two-column charts */}
@@ -958,6 +971,34 @@ function CategoryTab({period}) {
     </div>
 
     {/* Detail table */}
+    {/* Mix pe Clinici — stacked 100% din slide-ul Sales Split */}
+    <Card style={{marginBottom:16}}>
+      <Sec>Mix pe Clinici — {catPLabel}</Sec>
+      <SafeBox>{CLINIC_MIX[ACT_MO] ? (()=>{
+        const mixSrc = CLINIC_MIX[ACT_MO][period==='Month'?'M':'Y'];
+        const data = MIX_CLINICS.map(([code,name])=>({name, ...mixSrc[code]}));
+        return <div>
+        <ResponsiveContainer width="100%" height={380}>
+          <BarChart data={data} margin={{top:10,right:10,bottom:5,left:0}} barCategoryGap="18%">
+            <CartesianGrid strokeDasharray="3 3" stroke="#F0F0F0" vertical={false}/>
+            <XAxis dataKey="name" tick={{fontSize:10,fill:P.text}} axisLine={false} tickLine={false} interval={0}/>
+            <YAxis domain={[0,100]} tickFormatter={v=>v+'%'} tick={{fontSize:10,fill:P.muted}} axisLine={false} tickLine={false}/>
+            <Tooltip content={<TipPct/>}/>
+            {MIX_STACK.map(k=>{ const c = CAT_LIST.find(x=>x.key===k); return (
+              <Bar key={k} dataKey={k} stackId="mix" name={c.name} fill={c.color}>
+                <LabelList dataKey={k} position="center" formatter={(v)=> v>=5 ? Math.round(v)+'%' : ''} style={{fontSize:9,fill:'#fff',fontWeight:600}}/>
+              </Bar>
+            );})}
+          </BarChart>
+        </ResponsiveContainer>
+        <Legend items={MIX_STACK.map(k=>{const c=CAT_LIST.find(x=>x.key===k);return [c.color,c.name];})}/>
+        <div style={{fontSize:10,color:P.muted,marginTop:6,fontStyle:'italic',lineHeight:1.4}}>
+          Sursă: slide Sales Split din raportul lunar — pondere pe clinică (%). Etichetele apar pentru segmente ≥5%; valorile complete în tooltip. Ultima coloană = Total Rețea.
+        </div>
+        </div>;
+      })() : <div style={{fontSize:12,color:P.muted,padding:'18px 6px'}}>Mix-ul pe clinici este disponibil începând cu <b>Iunie 2026</b> (raportul lunii Mai nu include slide-ul Sales Split). Selectează Iun sau Iul.</div>}</SafeBox>
+    </Card>
+
     <Card>
       <Sec>Detalii pe Categorii — {catPLabel}</Sec>
       <div style={{overflowX:'auto'}}>
