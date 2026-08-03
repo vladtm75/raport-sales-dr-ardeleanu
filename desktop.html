@@ -1199,9 +1199,7 @@ function ComparativeTab({period}) {
               <th style={{padding:'10px 10px',textAlign:'right',fontWeight:600,color:'#666',fontSize:10,borderBottom:`1px solid ${P.border}`}}>2025</th>
               <th style={{padding:'10px 12px',textAlign:'right',fontWeight:800,color:P.primary,fontSize:11,borderBottom:`1px solid ${P.border}`}}>2026 Actual</th>
               {/* YOY */}
-              <th style={{padding:'10px 10px',textAlign:'center',fontWeight:500,color:P.muted,fontSize:10,borderBottom:`1px solid ${P.border}`,borderLeft:`3px solid #B5BD5C44`}}>24/23</th>
-              <th style={{padding:'10px 10px',textAlign:'center',fontWeight:500,color:P.muted,fontSize:10,borderBottom:`1px solid ${P.border}`}}>25/24</th>
-              <th style={{padding:'10px 10px',textAlign:'center',fontWeight:700,color:'#2D7D46',fontSize:10,borderBottom:`1px solid ${P.border}`}}>26/25</th>
+              <th style={{padding:'10px 10px',textAlign:'center',fontWeight:700,color:'#2D7D46',fontSize:10,borderBottom:`1px solid ${P.border}`,borderLeft:`3px solid #B5BD5C44`}}>26/25</th>
               {/* FULL YEAR YOY */}
               <th style={{padding:'10px 10px',textAlign:'center',fontWeight:600,color:'#7B5EA7',fontSize:10,borderBottom:`1px solid ${P.border}`,borderLeft:`3px solid #7B5EA722`}}>FY 24/23</th>
               <th style={{padding:'10px 10px',textAlign:'center',fontWeight:700,color:'#5B3F8A',fontSize:10,borderBottom:`1px solid ${P.border}`}}>FY 25/24</th>
@@ -1246,12 +1244,6 @@ function ComparativeTab({period}) {
                 </td>
                 {/* YOY badges */}
                 <td style={{padding:'10px 10px',textAlign:'center',borderLeft:`3px solid #B5BD5C22`}}>
-                  {r.yoy2!=null&&<span style={{display:'inline-block',padding:'2px 7px',borderRadius:20,fontSize:10,fontWeight:600,background:r.yoy2>=0?'#F0FDF4':'#FEF2F2',color:r.yoy2>=0?'#16803C':P.alert}}>{pct(r.yoy2)}</span>}
-                </td>
-                <td style={{padding:'10px 10px',textAlign:'center'}}>
-                  {r.yoy1!=null&&<span style={{display:'inline-block',padding:'2px 7px',borderRadius:20,fontSize:10,fontWeight:600,background:r.yoy1>=0?'#F0FDF4':'#FEF2F2',color:r.yoy1>=0?'#16803C':P.alert}}>{pct(r.yoy1)}</span>}
-                </td>
-                <td style={{padding:'10px 10px',textAlign:'center'}}>
                   {r.yoy!=null&&<span style={{display:'inline-block',padding:'3px 9px',borderRadius:20,fontSize:11,fontWeight:700,background:r.yoy>=0?'#DCFCE7':'#FEE2E2',color:r.yoy>=0?'#15803D':P.alert,boxShadow:r.yoy>=0?'0 1px 4px rgba(21,128,61,0.15)':'0 1px 4px rgba(217,48,37,0.15)'}}>{pct(r.yoy)}</span>}
                 </td>
                 {/* FULL YEAR YOY */}
@@ -1289,12 +1281,6 @@ function ComparativeTab({period}) {
               <td style={{padding:'11px 10px',textAlign:'right',color:'#555',fontSize:11,fontWeight:600}}>{fmt(n25)}</td>
               <td style={{padding:'11px 12px',textAlign:'right',fontWeight:800,color:P.primary,fontSize:13,fontFamily:"'Playfair Display',serif"}}>{fmt(n26)}</td>
               <td style={{padding:'11px 10px',textAlign:'center',borderLeft:`3px solid #B5BD5C22`}}>
-                <span style={{display:'inline-block',padding:'2px 7px',borderRadius:20,fontSize:10,fontWeight:600,background:gr(n24,n23)>=0?'#F0FDF4':'#FEF2F2',color:gr(n24,n23)>=0?'#16803C':P.alert}}>{pct(gr(n24,n23))}</span>
-              </td>
-              <td style={{padding:'11px 10px',textAlign:'center'}}>
-                <span style={{display:'inline-block',padding:'2px 7px',borderRadius:20,fontSize:10,fontWeight:600,background:gr(n25,n24)>=0?'#F0FDF4':'#FEF2F2',color:gr(n25,n24)>=0?'#16803C':P.alert}}>{pct(gr(n25,n24))}</span>
-              </td>
-              <td style={{padding:'11px 10px',textAlign:'center'}}>
                 <span style={{display:'inline-block',padding:'3px 9px',borderRadius:20,fontSize:11,fontWeight:700,background:gr(n26,n25)>=0?'#DCFCE7':'#FEE2E2',color:gr(n26,n25)>=0?'#15803D':P.alert,boxShadow:'0 1px 4px rgba(0,0,0,0.08)'}}>{pct(gr(n26,n25))}</span>
               </td>
               <td style={{padding:'11px 10px',textAlign:'center',borderLeft:`3px solid #7B5EA722`}}>
@@ -1326,9 +1312,7 @@ function ComparativeTab({period}) {
               <td style={{padding:'10px 10px',textAlign:'right',color:P.muted,fontSize:11,borderLeft:`3px solid ${P.primary}22`}}>—</td>
               <td style={{padding:'10px 10px',textAlign:'right',color:'#555',fontSize:11,fontWeight:500}}>{fmt(lfl25)}</td>
               <td style={{padding:'10px 12px',textAlign:'right',fontWeight:800,color:P.olive,fontSize:12,fontFamily:"'Playfair Display',serif"}}>{fmt(lfl26)}</td>
-              <td style={{padding:'10px 10px',textAlign:'center',color:P.muted,borderLeft:`3px solid #B5BD5C22`}}>—</td>
-              <td style={{padding:'10px 10px',textAlign:'center',color:P.muted}}>—</td>
-              <td style={{padding:'10px 10px',textAlign:'center'}}>
+              <td style={{padding:'10px 10px',textAlign:'center',borderLeft:`3px solid #B5BD5C22`}}>
                 <span style={{display:'inline-block',padding:'3px 9px',borderRadius:20,fontSize:11,fontWeight:700,background:gr(lfl26,lfl25)>=0?'#DCFCE7':'#FEE2E2',color:gr(lfl26,lfl25)>=0?'#15803D':P.alert,boxShadow:'0 1px 4px rgba(0,0,0,0.08)'}}>{pct(gr(lfl26,lfl25))}</span>
               </td>
               <td style={{padding:'10px 10px',textAlign:'center',borderLeft:`3px solid #7B5EA722`}}>
