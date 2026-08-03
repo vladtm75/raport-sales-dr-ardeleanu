@@ -466,31 +466,32 @@ function buildClusterDataRows(codes) {
 // ─── Ramp-up Data ────────────────────────────────────────────────────────────
 const RAMP = [
   // Dr Ardeleanu
-  { op:'Dr. Ardeleanu', clinic:'Oltenița',   start:2018, group:'DA', yoy2423:36, yoy2524:8,  yoy2625:5,  years:[159114,197678,636343,1558573,2380641,3826467,5189658,5612317,5887426,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Giurgiu',    start:2021, group:'DA', yoy2423:20, yoy2524:16, yoy2625:6,  years:[1060736,4496236,5999885,7177825,8339481,8832391,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Dorobanți',  start:2021, group:'DA', yoy2423:53, yoy2524:82, yoy2625:31, years:[23260,70860,373868,570814,1037686,1360690,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Cotroceni',  start:2023, group:'DA', yoy2423:578,yoy2524:101,yoy2625:26, years:[102084,692271,1388010,1750059,null,null,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Slobozia',   start:2023, group:'DA', yoy2423:1596,yoy2524:44,yoy2625:9, years:[256485,4349568,6255476,6805648,null,null,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Călărași',   start:2024, group:'DA', yoy2423:null,yoy2524:80, yoy2625:11, years:[4921888,8883757,9856877,null,null,null,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Târgoviște', start:2025, group:'DA', yoy2423:null,yoy2524:null,yoy2625:348,years:[1620538,5641963,null,null,null,null,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Focșani',    start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,years:[3715480,null,null,null,null,null,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Brăila',     start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,years:[394681,null,null,null,null,null,null,null,null,null,null] },
-  // Concurență
-  { op:'Prodent Gruia', clinic:'Câmpina',    start:2014, group:'C', yoy2423:13, yoy2524:null,yoy2625:null,years:[92195,133166,350636,622776,1043275,1783170,2714839,5199138,5786796,7048521,7992963] },
-  { op:'Dental Blue',   clinic:'Slobozia+Tănădărei',start:2010,group:'C',yoy2423:10,yoy2524:null,yoy2625:null,years:[299611,1103819,1579398,2115173,3258266,3919676,3211620,4078290,4495819,4515146,4972637] },
-  { op:'Dental Blue',   clinic:'Fetești',    start:2018, group:'C', yoy2423:23, yoy2524:null,yoy2625:null,years:[482901,550451,600420,500390,500485,726631,2229031,2742541,null,null,null] },
-  { op:'Elida Dent',    clinic:'Târgoviște', start:2015, group:'C', yoy2423:143,yoy2524:null,yoy2625:null,years:[77240,235000,404030,688640,872820,2027240,2440210,2435560,5907461,null,null] },
-  { op:'CM Prolife',    clinic:'Târgoviște', start:2005, group:'C', yoy2423:18, yoy2524:null,yoy2625:null,years:[2416647,2210703,2319557,2509769,2456074,3042141,2428307,3630317,4230868,5515959,6535903] },
-  { op:'Dentrust',      clinic:'Focșani #1', start:2017, group:'C', yoy2423:null,yoy2524:null,yoy2625:null,years:[null,1433182,3231529,3448587,4671912,4794081,2369456,1003485,null,null,null] },
-  { op:'Dentrust',      clinic:'Focșani #2', start:2022, group:'C', yoy2423:null,yoy2524:null,yoy2625:null,years:[6080608,5299040,6583020,null,null,null,null,null,null,null,null] },
-  { op:'Edent',         clinic:'Tulcea',     start:2016, group:'C', yoy2423:13, yoy2524:null,yoy2625:null,years:[451646,1619832,2861556,3690160,3793237,5506669,7128195,9308721,10551932,null,null] },
-  { op:'Unident',       clinic:'Tulcea',     start:2006, group:'C', yoy2423:57, yoy2524:null,yoy2625:null,years:[434272,1028949,2082986,2241793,4426339,4318786,4767643,5000498,4974357,7632421,12012873] },
-  { op:'Unident',       clinic:'Galați',     start:2019, group:'C', yoy2423:-4, yoy2524:null,yoy2625:null,years:[4543687,4653100,4762119,6290208,7207141,6890990,null,null,null,null,null] },
-  { op:'Unident',       clinic:'Buzău',      start:2019, group:'C', yoy2423:5,  yoy2524:null,yoy2625:null,years:[703528,1064051,3129138,2247194,2249558,2355831,null,null,null,null,null] },
-  { op:'Unident',       clinic:'Brașov',     start:2019, group:'C', yoy2423:41, yoy2524:null,yoy2625:null,years:[964499,785693,1179334,1544461,1349509,1898523,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Oltenița',   start:2018, group:'DA', yoy2423:36, yoy2524:8,  yoy2625:5,  years:[159114,197678,636343,1558573,2380641,3826467,5189658,5612317,5887426,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Giurgiu',    start:2021, group:'DA', yoy2423:20, yoy2524:16, yoy2625:6,  years:[1060736,4496236,5999885,7177825,8339481,8832391,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Dorobanți',  start:2021, group:'DA', yoy2423:53, yoy2524:82, yoy2625:31, years:[23260,70860,373868,570814,1037686,1360690,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Cotroceni',  start:2023, group:'DA', yoy2423:578,yoy2524:101,yoy2625:26, years:[102084,692271,1388010,1750059,null,null,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Slobozia',   start:2023, group:'DA', yoy2423:1596,yoy2524:44,yoy2625:9, years:[256485,4349568,6255476,6805648,null,null,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Călărași',   start:2024, group:'DA', yoy2423:null,yoy2524:80, yoy2625:11, years:[4921888,8883757,9856877,null,null,null,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Târgoviște', start:2025, group:'DA', yoy2423:null,yoy2524:null,yoy2625:348,years:[1620538,5641963,null,null,null,null,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Focșani',    start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,years:[3715480,null,null,null,null,null,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Brăila',     start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,years:[394681,null,null,null,null,null,null,null,null,null,null,null] },
+  // Concurență — bilanțuri oficiale (listafirme/topfirme/risco), serii per entitate juridică, 2025 = ultimul an raportat
+  { op:'Prodent Gruia', clinic:'Câmpina',    start:2014, group:'C', yoy2423:13, yoy2524:17, yoy2625:null,years:[92195,133166,350636,622776,1043275,1783170,2714839,5199138,5786796,7048521,7992963,9355789] },
+  { op:'Dental Blue',   clinic:'Slobozia+Tănădărei',start:2010,group:'C',yoy2423:61,yoy2524:14,yoy2625:null,years:[299611,1103819,1579398,2115173,3258266,3919676,3211620,4078290,4495819,4515146,7272637,8275528] },
+  { op:'Dental Blue',   clinic:'Fetești',    start:2017, group:'C', yoy2423:-80,yoy2524:-20,yoy2625:null,years:[482901,5880,600,500,500,726631,2229031,442541,355243,null,null,null] },
+  { op:'Elida Dent',    clinic:'Târgoviște', start:2015, group:'C', yoy2423:143,yoy2524:47, yoy2625:null,years:[77240,235000,404030,688640,872820,2027240,2440210,2435560,5907461,8674481,null,null] },
+  { op:'CM Prolife',    clinic:'Târgoviște', start:2005, group:'C', yoy2423:18, yoy2524:2,  yoy2625:null,years:[2416647,2210703,2319557,2509769,2456074,3042141,2428307,3630317,4230868,5515959,6535903,6643557] },
+  { op:'Dentrust',      clinic:'Focșani #1', start:2016, group:'C', yoy2423:24, yoy2524:53, yoy2625:null,years:[502105,1435519,4621622,4015826,3135845,4415417,6080608,5299040,6583020,10052855,null,null] },
+  { op:'Dentrust',      clinic:'Focșani #2', start:2023, group:'C', yoy2423:79, yoy2524:35, yoy2625:null,years:[2376496,4253734,5737403,null,null,null,null,null,null,null,null,null] },
+  { op:'Edent',         clinic:'Tulcea',     start:2016, group:'C', yoy2423:13, yoy2524:14, yoy2625:null,years:[451646,1619832,2861556,3690160,3793237,5506669,5864757,6584853,7414484,8448786,null,null] },
+  { op:'Edent',         clinic:'București',  start:2022, group:'C', yoy2423:29, yoy2524:18, yoy2625:null,years:[1765302,5656010,7302800,8584686,null,null,null,null,null,null,null,null] },
+  { op:'Unident',       clinic:'Tulcea',     start:2006, group:'C', yoy2423:57, yoy2524:4,  yoy2625:null,years:[434272,1028949,2082986,2241793,4425339,4318786,4767643,5000498,4974357,7632421,12012873,12474884] },
+  { op:'Unident',       clinic:'Galați',     start:2019, group:'C', yoy2423:-4, yoy2524:49, yoy2625:null,years:[4543687,4653100,4762119,6290208,7207141,6890990,10299128,null,null,null,null,null] },
+  { op:'Unident',       clinic:'Buzău',      start:2019, group:'C', yoy2423:5,  yoy2524:28, yoy2625:null,years:[708585,1071157,3146755,2247194,2249558,2355831,3007904,null,null,null,null,null] },
+  { op:'Unident',       clinic:'Brașov',     start:2019, group:'C', yoy2423:41, yoy2524:22, yoy2625:null,years:[964499,785693,1179334,1544461,1349509,1898523,2308549,null,null,null,null,null] },
 ];
 
-const YEAR_LABELS = ['Y0','Y1','Y2','Y3','Y4','Y5','Y6','Y7','Y8','Y9','Y10'];
+const YEAR_LABELS = ['Y0','Y1','Y2','Y3','Y4','Y5','Y6','Y7','Y8','Y9','Y10','Y11'];
 
 // ─── Ramp-up Tab ─────────────────────────────────────────────────────────────
 function RampupTab() {
@@ -544,7 +545,7 @@ function RampupTab() {
             onMouseLeave={()=>setHighlight(null)}
             style={{
               display:'grid',
-              gridTemplateColumns:'130px 160px 44px 44px repeat(11,1fr) 68px 68px 68px',
+              gridTemplateColumns:'130px 160px 44px 44px repeat(12,1fr) 68px 68px 68px',
               borderBottom:`1px solid #F0F0F0`,
               background: isHL?(isDA?`${P.primary}08`:'#F8F8F8'):(i%2===0?P.white:'#FAFAFA'),
               transition:'background 0.1s',
@@ -563,7 +564,7 @@ function RampupTab() {
             </div>
             {/* Y0 label */}
             <div style={{padding:'9px 4px',textAlign:'center',fontSize:9,color:P.muted,fontStyle:'italic'}}>Y0</div>
-            {/* Year columns Y0–Y10 */}
+            {/* Year columns Y0–Y11 */}
             {r.years.map((v,yi)=>{
               const isLatest = v!=null && r.years[yi+1]==null && yi>0;
               const isPeak = v!=null && v===maxVal && yi>0;
@@ -618,7 +619,7 @@ function RampupTab() {
         {/* Column headers */}
         <div style={{
           display:'grid',
-          gridTemplateColumns:'130px 160px 44px 44px repeat(11,1fr) 68px 68px 68px',
+          gridTemplateColumns:'130px 160px 44px 44px repeat(12,1fr) 68px 68px 68px',
           background:'#F8F4F4',
           borderBottom:`2px solid ${P.primary}`,
         }}>
@@ -653,8 +654,8 @@ function RampupTab() {
           <Sec>Benchmark vs Concurență</Sec>
           {[
             ['Slobozia vs Dental Blue Slobozia','DA depășește în Y2 nivelul Y5 al concurenței','green'],
-            ['Târgoviște vs CM Prolife + Elida','DA la +348% YoY · concurența matură sub 20%','green'],
-            ['Focșani vs Dentrust','DA Y0: 3.72M vs Dentrust Y0: 6.08M · start solid','amber'],
+            ['Târgoviște vs CM Prolife + Elida','DA la +348% YoY · Elida a accelerat în 2025: +47% (8.67M)','amber'],
+            ['Focșani vs Dentrust','DA Y0: 3.72M · Dentrust 2025: 15.8M pe 2 clinici (+53%/+35%)','amber'],
             ['Oltenița maturitate','Y8: 5.89M · trend stabil top-performer','green'],
           ].map(([c,t,type])=><Pill key={c} type={type}><b>{c}</b> — {t}</Pill>)}
         </Card>
@@ -663,7 +664,7 @@ function RampupTab() {
           {[
             ['Pattern DA','Clinicile DA ating Y1 rapid dar cu baze solide în Y0','green'],
             ['Risc Giurgiu','YoY 26/25: +6% · baza ridicată comprimă creșterea','amber'],
-            ['Potențial Cotroceni','Y3: 1.75M · în linie cu Dental Blue Fetești la același stadiu','amber'],
+            ['Potențial Cotroceni','Y3: 1.75M · creștere constantă pe segment urban','amber'],
             ['Brăila 2026','Start modest 394K · urmărire necesară în Y1','amber'],
           ].map(([c,t,type])=><Pill key={c} type={type}><b>{c}</b> — {t}</Pill>)}
         </Card>
