@@ -982,7 +982,7 @@ function CategoryTab({period}) {
           <BarChart data={data} margin={{top:10,right:10,bottom:5,left:0}} barCategoryGap="18%">
             <CartesianGrid strokeDasharray="3 3" stroke="#F0F0F0" vertical={false}/>
             <XAxis dataKey="name" tick={{fontSize:10,fill:P.text}} axisLine={false} tickLine={false} interval={0}/>
-            <YAxis domain={[0,100]} tickFormatter={v=>v+'%'} tick={{fontSize:10,fill:P.muted}} axisLine={false} tickLine={false}/>
+            <YAxis domain={[0,100]} ticks={[0,25,50,75,100]} allowDataOverflow={true} tickFormatter={v=>Math.round(v)+'%'} tick={{fontSize:10,fill:P.muted}} axisLine={false} tickLine={false}/>
             <Tooltip content={<TipPct/>}/>
             {MIX_STACK.map(k=>{ const c = CAT_LIST.find(x=>x.key===k); return (
               <Bar key={k} dataKey={k} stackId="mix" name={c.name} fill={c.color}>
