@@ -871,6 +871,70 @@ class SafeBox extends React.Component {
   render(){ return this.state.err ? <div style={{fontSize:11,color:'#888',padding:10}}>Secțiunea nu a putut fi afișată.</div> : this.props.children; }
 }
 
+// ─── Mix pe categorii pentru clinici si clustere (din Sales Split) ─────────────
+const mixFor = (codes, period) => {
+  const src = CLINIC_MIX[ACT_MO]; if (!src) return null;
+  const m = src[period==='Month' ? 'M' : 'Y'];
+  const acc = {}; let tot = 0;
+  codes.forEach(code => {
+    const mix = m[code]; if (!mix) return;
+    const sales = val(CD[code], 2026, period) || 0;
+    tot += sales;
+    for (const k in mix) acc[k] = (acc[k]||0) + mix[k]*sales/100;
+  });
+  if (!tot) return null;
+  const out = {};
+  for (const k in acc) out[k] = acc[k]/tot*100;
+  return {pct: out, sales: tot};
+};
+
+function CatMixCard({codes, period}) {
+  const agg = mixFor(codes, period);
+  const netSrc = CLINIC_MIX[ACT_MO] ? CLINIC_MIX[ACT_MO][period==='Month'?'M':'Y'].TOT : null;
+  return <Card style={{marginBottom:16}}>
+    <Sec>Vânzări pe Categorii — {pLabel(period)}</Sec>
+    {!agg ? <div style={{fontSize:12,color:P.muted,padding:'14px 6px'}}>Mixul pe categorii nu este disponibil pentru perioada selectată.</div> : (()=>{
+      const rows = CAT_LIST.map(c=>({...c, p: agg.pct[c.key]||0, net: netSrc ? (netSrc[c.key]||0) : null}))
+        .filter(r=>r.p>0.05).sort((a,b)=>b.p-a.p);
+      const bar = [{name:'mix', ...agg.pct}];
+      return <div>
+        <ResponsiveContainer width="100%" height={52}>
+          <BarChart data={bar} layout="vertical" margin={{top:4,right:8,bottom:4,left:8}}>
+            <XAxis type="number" domain={[0,100]} hide/>
+            <YAxis type="category" dataKey="name" hide/>
+            <Tooltip content={<TipPct/>}/>
+            {MIX_STACK.map(k=>{ const c=CAT_LIST.find(x=>x.key===k); return <Bar key={k} dataKey={k} stackId="m" fill={c.color} name={c.name}/>; })}
+          </BarChart>
+        </ResponsiveContainer>
+        <table style={{width:'100%',borderCollapse:'collapse',fontSize:11,marginTop:6}}>
+          <thead><tr style={{borderBottom:'2px solid '+P.primary}}>
+            <th style={{textAlign:'left',padding:'6px 8px',color:P.primary,fontWeight:700,fontSize:10}}>Categorie</th>
+            <th style={{textAlign:'right',padding:'6px 8px',color:P.primary,fontWeight:700,fontSize:10}}>% din vânzări</th>
+            <th style={{textAlign:'right',padding:'6px 8px',color:P.primary,fontWeight:700,fontSize:10}}>~RON</th>
+            <th style={{textAlign:'right',padding:'6px 8px',color:P.primary,fontWeight:700,fontSize:10}}>% rețea</th>
+            <th style={{textAlign:'right',padding:'6px 8px',color:P.primary,fontWeight:700,fontSize:10}}>Δ vs rețea</th>
+          </tr></thead>
+          <tbody>
+            {rows.map((r,i)=>{ const d = r.net==null ? null : (r.p - r.net); return (
+              <tr key={r.key} style={{borderBottom:'1px solid #F2F2F2',background:i%2?'#FBFBFB':'transparent'}}>
+                <td style={{padding:'5px 8px'}}><span style={{display:'inline-block',width:9,height:9,borderRadius:2,background:r.color,marginRight:7,verticalAlign:'middle'}}></span>{r.name}</td>
+                <td style={{textAlign:'right',padding:'5px 8px',fontWeight:600}}>{r.p.toFixed(1)}%</td>
+                <td style={{textAlign:'right',padding:'5px 8px',color:P.muted}}>{fmt(r.p*agg.sales/100)}</td>
+                <td style={{textAlign:'right',padding:'5px 8px',color:P.muted}}>{r.net==null?'—':r.net.toFixed(1)+'%'}</td>
+                <td style={{textAlign:'right',padding:'5px 8px',fontWeight:700,color:d==null?P.muted:(d>0.5?'#2D7D46':d<-0.5?P.alert:P.muted)}}>{d==null?'—':(d>0?'+':'')+d.toFixed(1)+'pp'}</td>
+              </tr>
+            );})}
+          </tbody>
+        </table>
+        <div style={{fontSize:10,color:P.muted,marginTop:8,fontStyle:'italic',lineHeight:1.4}}>
+          Sursă: Sales Split per clinică. Pentru clustere, mixul este agregat ponderat cu vânzările clinicilor membre. ~RON = estimare (pondere × vânzări perioadă). Δ vs rețea = diferența față de mixul Total Rețea, în puncte procentuale.
+        </div>
+      </div>;
+    })()}
+  </Card>;
+}
+
+
 function CategoryTab({period}) {
   // Period values are still useful for the snapshot bar chart and the table
   const rows = CAT_LIST.map(c => ({
@@ -1483,6 +1547,7 @@ function ClusterTab({num,period}) {
         </Card>;
       })}
     </div>
+    <SafeBox><CatMixCard codes={codes} period={period}/></SafeBox>
     <DataTable title={`Serii Istorice — Cluster ${num}`} rows={buildClusterDataRows(codes)}/>
   </div>;
 }
@@ -1572,6 +1637,7 @@ function ClinicTab({code,period}) {
         </ResponsiveContainer>
       </Card>
     </div>
+    <SafeBox><CatMixCard codes={[code]} period={period}/></SafeBox>
     {gHist.length>0&&<Card>
       <Sec>Creștere YoY % — Istoric</Sec>
       <ResponsiveContainer width="100%" height={130}>
