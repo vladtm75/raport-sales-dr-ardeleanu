@@ -1493,7 +1493,7 @@ function ClinicTab({code,period}) {
   const v26=val(c,2026,period), v25=val(c,2025,period), v24=val(c,2024,period), bv=bval(c,2026,period);
   const yoy=gr(v26,v25), vb=gr(v26,bv);
   const years=Object.keys(c.actuals).map(Number).filter(y=>y>=2022).sort();
-  const monthly=MONTHS.map((m,i)=>{const o={month:m};years.forEach(yr=>{o[yr]=c.actuals[yr]?.[i]||null;});if(c.budget[2026])o['Bgt']=c.budget[2026]?.[i]||null;return o;});
+  const monthly=MONTHS.map((m,i)=>{const o={month:m};years.forEach(yr=>{o[yr]=(yr===2026 && i>=ACT_MO) ? null : (c.actuals[yr]?.[i]||null);});if(c.budget[2026])o['Bgt']=c.budget[2026]?.[i]||null;return o;});
   const annual=Object.keys(c.actuals).map(Number).filter(y=>y>=2020).sort().map(yr=>({year:`${yr}`,rev:sum(c.actuals[yr].filter(x=>x!==null))}));
   const gHist=[];
   const ay=Object.keys(c.actuals).map(Number).filter(y=>y>=2021).sort();
