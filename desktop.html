@@ -466,14 +466,14 @@ function buildClusterDataRows(codes) {
 // ─── Ramp-up Data ────────────────────────────────────────────────────────────
 const RAMP = [
   // Dr Ardeleanu
-  { op:'Dr. Ardeleanu', clinic:'Oltenița',   start:2018, group:'DA', yoy2423:36, yoy2524:8,  yoy2625:5,  years:[159114,197678,636343,1558573,2380641,3826467,5189658,5612317,5887426,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Giurgiu',    start:2021, group:'DA', yoy2423:20, yoy2524:16, yoy2625:6,  years:[1060736,4496236,5999885,7177825,8339481,8832391,null,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Dorobanți',  start:2021, group:'DA', yoy2423:53, yoy2524:82, yoy2625:31, years:[23260,70860,373868,570814,1037686,1360690,null,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Cotroceni',  start:2023, group:'DA', yoy2423:578,yoy2524:101,yoy2625:26, years:[102084,692271,1388010,1750059,null,null,null,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Slobozia',   start:2023, group:'DA', yoy2423:1596,yoy2524:44,yoy2625:9, years:[256485,4349568,6255476,6805648,null,null,null,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Călărași',   start:2024, group:'DA', yoy2423:null,yoy2524:80, yoy2625:11, years:[4921888,8883757,9856877,null,null,null,null,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Târgoviște', start:2025, group:'DA', yoy2423:null,yoy2524:null,yoy2625:348,years:[1620538,5641963,null,null,null,null,null,null,null,null,null,null] },
-  { op:'Dr. Ardeleanu', clinic:'Focșani',    start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,years:[3715480,null,null,null,null,null,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Oltenița',   start:2018, group:'DA', yoy2423:36, yoy2524:8,  yoy2625:5,  units:5, years:[159114,197678,636343,1558573,2380641,3826467,5189658,5612317,5887426,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Giurgiu',    start:2021, group:'DA', yoy2423:20, yoy2524:16, yoy2625:6,  units:5, years:[1060736,4496236,5999885,7177825,8339481,8832391,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Dorobanți',  start:2021, group:'DA', yoy2423:53, yoy2524:82, yoy2625:31, units:3, years:[23260,70860,373868,570814,1037686,1360690,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Cotroceni',  start:2023, group:'DA', yoy2423:578,yoy2524:101,yoy2625:26, units:2, years:[102084,692271,1388010,1750059,null,null,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Slobozia',   start:2023, group:'DA', yoy2423:1596,yoy2524:44,yoy2625:9, units:4, years:[256485,4349568,6255476,6805648,null,null,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Călărași',   start:2024, group:'DA', yoy2423:null,yoy2524:80, yoy2625:11, units:7, years:[4921888,8883757,9856877,null,null,null,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Târgoviște', start:2025, group:'DA', yoy2423:null,yoy2524:null,yoy2625:348,units:8,years:[1620538,5641963,null,null,null,null,null,null,null,null,null,null] },
+  { op:'Dr. Ardeleanu', clinic:'Focșani',    start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,units:5,years:[3715480,null,null,null,null,null,null,null,null,null,null,null] },
   { op:'Dr. Ardeleanu', clinic:'Brăila',     start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,years:[394681,null,null,null,null,null,null,null,null,null,null,null] },
   // Concurență — bilanțuri oficiale; unde clinica nu se poate izola per CUI se prezintă grupul (Dental Blue = Medical Dental Blue SRL + Dr. Cohen SRL cumulat)
   { op:'Prodent Gruia', clinic:'Grup: Câmpina+București',start:2014, group:'C', yoy2423:13, yoy2524:17, yoy2625:null,years:[92195,133166,350636,622776,1043275,1783170,2714839,5199138,5786796,7048521,7992963,9355789] },
