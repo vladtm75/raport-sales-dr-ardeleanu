@@ -29,6 +29,7 @@ const P = {
   terracotta: '#dd7e6b',
   amber:      '#C9A227',
   wheat:      '#F2DAB7',
+  cream:      '#F5EDE3',
   alert:      '#D93025',
   text:       '#1A1A1A',
   white:      '#FFFFFF',
@@ -1928,79 +1929,105 @@ function App() {
   const period = view;
   return (
     <div style={{fontFamily:"'Poppins',sans-serif",background:P.bg,minHeight:'100vh',color:P.text}}>
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+      <style>{`
+        .da-tab{transition:color .18s ease, background .18s ease;}
+        .da-tab:hover{color:#7B1C16 !important;background:rgba(123,28,22,0.05) !important;}
+        .da-pill{transition:all .16s ease;}
+        .da-pill:not(.on):hover{border-color:#C9A227 !important;background:#FFFCF5 !important;}
+        .da-link{color:#F2DAB7;text-decoration:none;border-bottom:1px solid rgba(242,218,183,0.32);transition:all .18s ease;}
+        .da-link:hover{color:#FFFFFF;border-bottom-color:#FFFFFF;}
+      `}</style>
 
       {/* Sticky header group: brand header + tabs + period toggle */}
-      <div style={{position:'sticky',top:0,zIndex:10,background:P.bg,boxShadow:'0 4px 12px rgba(0,0,0,0.06)'}}>
+      <div style={{position:'sticky',top:0,zIndex:10,background:P.bg,boxShadow:'0 6px 20px rgba(94,20,16,0.10)'}}>
 
         {/* Header */}
-        <div style={{background:P.primary,padding:'18px 32px 16px',boxShadow:'0 2px 12px rgba(123,28,22,0.30)'}}>
-          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:16}}>
+        <div style={{background:'linear-gradient(135deg,#8E2019 0%,#7B1C16 42%,#5F1410 100%)',padding:'20px 32px 18px',position:'relative',overflow:'hidden'}}>
+          {/* light bloom */}
+          <div style={{position:'absolute',top:-170,left:-70,width:460,height:340,background:'radial-gradient(ellipse at center,rgba(255,255,255,0.11) 0%,rgba(255,255,255,0) 70%)',pointerEvents:'none'}}/>
+          <div style={{position:'relative',display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:18}}>
 
             {/* Left — logo + brand identity */}
-            <div style={{display:'flex',alignItems:'center',gap:20}}>
-              <img src={LOGO_ADC} alt="Dr. Ardeleanu" style={{height:60,width:60,objectFit:'contain'}}/>
-              <div style={{borderLeft:'1.5px solid rgba(255,255,255,0.22)',paddingLeft:20}}>
-                <div style={{fontSize:11,fontWeight:600,color:P.wheat,letterSpacing:1.2,textTransform:'uppercase',marginBottom:3}}>Sales Performance Dashboard</div>
-                <div style={{fontSize:20,fontWeight:700,color:P.white,letterSpacing:0.1,lineHeight:1,fontFamily:"'Playfair Display',serif"}}>Dr. Ardeleanu Dental Clinics</div>
-                <div style={{fontSize:11,color:'rgba(255,255,255,0.55)',marginTop:4,fontStyle:'italic'}}>Excelența la prețuri accesibile. Clinica familiei tale.</div>
+            <div style={{display:'flex',alignItems:'center',gap:18}}>
+              <div style={{width:62,height:62,borderRadius:15,overflow:'hidden',background:'#7B1C16',border:'1px solid rgba(201,162,39,0.42)',boxShadow:'0 4px 14px rgba(0,0,0,0.26)',flexShrink:0}}>
+                <img src={LOGO_ADC} alt="Dr. Ardeleanu Dental Clinics" style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}/>
+              </div>
+              <div style={{borderLeft:'1px solid rgba(242,218,183,0.30)',paddingLeft:18}}>
+                <div style={{fontSize:9.5,fontWeight:600,color:P.amber,letterSpacing:2.4,textTransform:'uppercase',marginBottom:5}}>Sales Performance Dashboard</div>
+                <div style={{fontSize:25,fontWeight:700,color:P.white,lineHeight:1.06,fontFamily:"'Playfair Display',serif"}}>Dr. Ardeleanu <span style={{color:P.wheat}}>Dental Clinics</span></div>
+                <div style={{fontSize:11,fontWeight:300,color:'rgba(255,255,255,0.62)',marginTop:6,letterSpacing:0.2}}>Excelența la prețuri accesibile · Clinica familiei tale</div>
               </div>
             </div>
 
             {/* Right — brand KPIs */}
-            <div style={{display:'flex',gap:24,alignItems:'center'}}>
+            <div style={{display:'flex',gap:9,alignItems:'stretch'}}>
               {[
                 ['9','Clinici'],
                 ['8','Orașe'],
                 ['30K+','Pacienți/an'],
                 ['4.9★','Google'],
               ].map(([val,lbl])=>(
-                <div key={lbl} style={{textAlign:'center'}}>
-                  <div style={{fontSize:18,fontWeight:800,color:P.white,lineHeight:1}}>{val}</div>
-                  <div style={{fontSize:10,color:'rgba(255,255,255,0.55)',marginTop:3,letterSpacing:0.4,textTransform:'uppercase'}}>{lbl}</div>
+                <div key={lbl} style={{
+                  minWidth:76,textAlign:'center',padding:'10px 12px',borderRadius:10,
+                  background:'rgba(255,255,255,0.07)',border:'1px solid rgba(242,218,183,0.16)',
+                  display:'flex',flexDirection:'column',justifyContent:'center',
+                }}>
+                  <div style={{fontSize:19,fontWeight:800,color:P.white,lineHeight:1,letterSpacing:-0.3}}>{val}</div>
+                  <div style={{fontSize:8.5,fontWeight:500,color:'rgba(242,218,183,0.80)',marginTop:5,letterSpacing:1.1,textTransform:'uppercase'}}>{lbl}</div>
                 </div>
               ))}
-              <div style={{borderLeft:'1.5px solid rgba(255,255,255,0.22)',paddingLeft:24,textAlign:'center'}}>
-                <div style={{fontSize:13,fontWeight:700,color:P.wheat,letterSpacing:0.5}}>DIN 2017</div>
-                <div style={{fontSize:10,color:'rgba(255,255,255,0.45)',marginTop:2}}>{'Ian–'+MONTHS[ACT_MO-1]+' 2026'}</div>
+              <div style={{
+                padding:'10px 16px',borderRadius:10,textAlign:'center',
+                background:'rgba(201,162,39,0.14)',border:'1px solid rgba(201,162,39,0.45)',
+                display:'flex',flexDirection:'column',justifyContent:'center',
+              }}>
+                <div style={{fontSize:12,fontWeight:800,color:P.wheat,letterSpacing:1.6,lineHeight:1}}>DIN 2017</div>
+                <div style={{fontSize:9.5,fontWeight:300,color:'rgba(255,255,255,0.62)',marginTop:5,letterSpacing:0.3}}>{'Ian–'+MONTHS[ACT_MO-1]+' 2026'}</div>
               </div>
             </div>
 
           </div>
         </div>
 
+        {/* Gold hairline */}
+        <div style={{height:2,background:'linear-gradient(90deg,rgba(201,162,39,0) 0%,#C9A227 18%,#F2DAB7 50%,#C9A227 82%,rgba(201,162,39,0) 100%)'}}/>
+
         {/* Tabs */}
-        <div style={{background:P.white,borderBottom:`1px solid ${P.border}`,padding:'0 28px',display:'flex',gap:0,overflowX:'auto'}}>
+        <div style={{background:'#FFFDFB',borderBottom:`1px solid ${P.border}`,padding:'0 28px',display:'flex',gap:0,overflowX:'auto'}}>
           {TABS.map(t=>(
-            <button key={t.id} onClick={()=>setTab(t.id)} style={{
-              padding:'10px 15px',border:'none',background:'transparent',cursor:'pointer',
+            <button key={t.id} className="da-tab" onClick={()=>setTab(t.id)} style={{
+              padding:'11px 15px 9px',border:'none',cursor:'pointer',
+              background:tab===t.id?'linear-gradient(180deg,rgba(123,28,22,0.07) 0%,rgba(123,28,22,0) 100%)':'transparent',
               fontSize:12,fontWeight:tab===t.id?700:500,
-              color:tab===t.id?P.primary:P.muted,
+              color:tab===t.id?P.primary:'#7A7A7A',
               borderBottom:tab===t.id?`2.5px solid ${P.primary}`:'2.5px solid transparent',
-              transition:'all 0.15s',whiteSpace:'nowrap',fontFamily:"'Poppins',sans-serif",
+              whiteSpace:'nowrap',fontFamily:"'Poppins',sans-serif",
             }}>{t.label}</button>
           ))}
         </div>
 
         {/* Period toggle */}
-        <div style={{background:P.white,borderBottom:`1px solid #F0F0F0`,padding:'9px 28px',display:'flex',gap:8,alignItems:'center'}}>
-          <span style={{fontSize:10,fontWeight:600,color:P.muted,marginRight:4,textTransform:'uppercase',letterSpacing:0.5}}>Perioadă</span>
+        <div style={{background:P.white,borderBottom:`1px solid #F0F0F0`,padding:'9px 28px',display:'flex',gap:7,alignItems:'center'}}>
+          <span style={{fontSize:9,fontWeight:600,color:P.amber,marginRight:6,textTransform:'uppercase',letterSpacing:1.6}}>Perioadă</span>
           {MONTHS.slice(0, LAST_ACT).map((m,i)=>{ const mo=i+1; const on=ACT_MO===mo; return (
-            <button key={m} onClick={()=>setSelMo(mo)} style={{
-              padding:'5px 14px',borderRadius:20,border:'1.5px solid '+(on?P.primary:P.border),
-              background:on?P.primary:P.white,color:on?P.white:P.text,
-              fontWeight:600,fontSize:11,cursor:'pointer',fontFamily:"'Poppins',sans-serif",transition:'all 0.15s',
+            <button key={m} className={'da-pill'+(on?' on':'')} onClick={()=>setSelMo(mo)} style={{
+              padding:'5px 14px',borderRadius:20,border:'1px solid '+(on?P.primary:'#E6E0DA'),
+              background:on?P.primary:P.white,color:on?P.white:'#5A5A5A',
+              boxShadow:on?'0 2px 6px rgba(123,28,22,0.28)':'none',
+              fontWeight:on?700:500,fontSize:11,cursor:'pointer',fontFamily:"'Poppins',sans-serif",
             }}>{m}</button>
           );})}
-          <span style={{width:1,height:20,background:P.border,margin:'0 4px'}}></span>
+          <span style={{width:1,height:18,background:'#E6E0DA',margin:'0 5px'}}></span>
           {[['Month','Lună'],['YTD','YTD']].map(([v,l])=>{ const on=view===v; return (
-            <button key={v} onClick={()=>setView(v)} style={{
-              padding:'5px 14px',borderRadius:20,border:'1.5px solid '+(on?P.primary:P.border),
-              background:on?P.primary:P.white,color:on?P.white:P.text,
-              fontWeight:700,fontSize:11,cursor:'pointer',fontFamily:"'Poppins',sans-serif",transition:'all 0.15s',
+            <button key={v} className={'da-pill'+(on?' on':'')} onClick={()=>setView(v)} style={{
+              padding:'5px 15px',borderRadius:20,border:'1px solid '+(on?P.primary:'#E6E0DA'),
+              background:on?P.primary:P.white,color:on?P.white:'#5A5A5A',
+              boxShadow:on?'0 2px 6px rgba(123,28,22,0.28)':'none',
+              fontWeight:700,fontSize:11,cursor:'pointer',fontFamily:"'Poppins',sans-serif",
             }}>{l}</button>
           );})}
-          <span style={{fontSize:11,fontWeight:600,color:P.muted,marginLeft:8}}>{pLabel(period)}</span>
+          <span style={{fontSize:11,fontWeight:500,color:'#8A8A8A',marginLeft:8}}>{pLabel(period)}</span>
         </div>
 
       </div>
@@ -2017,9 +2044,52 @@ function App() {
       </div>
 
       {/* Footer */}
-      <div style={{padding:'13px 28px',display:'flex',justifyContent:'space-between',alignItems:'center',background:P.primary,marginTop:20}}>
-        <div style={{fontSize:11,color:'rgba(255,255,255,0.65)'}}>© Dr. Ardeleanu Dental Clinics · clinicileardeleanu.ro · 031 99 63</div>
-        <div style={{fontSize:11,color:P.wheat,fontWeight:600}}>Din 2017</div>
+      <div style={{marginTop:30}}>
+        <div style={{height:2,background:'linear-gradient(90deg,rgba(201,162,39,0) 0%,#C9A227 18%,#F2DAB7 50%,#C9A227 82%,rgba(201,162,39,0) 100%)'}}/>
+        <div style={{background:'linear-gradient(135deg,#7B1C16 0%,#5F1410 100%)',padding:'26px 32px 26px',position:'relative',overflow:'hidden'}}>
+          <div style={{position:'absolute',bottom:-160,right:-60,width:420,height:300,background:'radial-gradient(ellipse at center,rgba(242,218,183,0.08) 0%,rgba(242,218,183,0) 70%)',pointerEvents:'none'}}/>
+          <div style={{position:'relative',maxWidth:1280,margin:'0 auto'}}>
+
+            <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',flexWrap:'wrap',gap:28}}>
+
+              {/* Brand */}
+              <div style={{display:'flex',alignItems:'center',gap:14}}>
+                <div style={{width:46,height:46,borderRadius:12,overflow:'hidden',background:'#7B1C16',border:'1px solid rgba(201,162,39,0.35)',flexShrink:0}}>
+                  <img src={LOGO_ADC} alt="" style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}/>
+                </div>
+                <div>
+                  <div style={{fontSize:15,fontWeight:700,color:P.white,fontFamily:"'Playfair Display',serif",lineHeight:1.15}}>Dr. Ardeleanu <span style={{color:P.wheat}}>Dental Clinics</span></div>
+                  <div style={{fontSize:10.5,fontWeight:300,color:'rgba(255,255,255,0.58)',marginTop:4}}>Excelența la prețuri accesibile · Clinica familiei tale</div>
+                </div>
+              </div>
+
+              {/* Network */}
+              <div style={{maxWidth:430}}>
+                <div style={{fontSize:8.5,fontWeight:600,color:P.amber,letterSpacing:1.8,textTransform:'uppercase',marginBottom:7}}>Rețeaua</div>
+                <div style={{fontSize:10.5,fontWeight:300,color:'rgba(255,255,255,0.60)',lineHeight:1.75}}>București Dorobanți · București Cotroceni · Oltenița · Slobozia · Călărași · Giurgiu · Târgoviște · Focșani · Brăila</div>
+              </div>
+
+              {/* Contact */}
+              <div style={{textAlign:'right'}}>
+                <div style={{fontSize:8.5,fontWeight:600,color:P.amber,letterSpacing:1.8,textTransform:'uppercase',marginBottom:7}}>Contact</div>
+                <div style={{fontSize:14,fontWeight:700,color:P.white,letterSpacing:0.4,lineHeight:1.2}}>031 99 63</div>
+                <div style={{fontSize:10.5,fontWeight:300,marginTop:5}}><a className="da-link" href="https://clinicileardeleanu.ro" target="_blank" rel="noreferrer">clinicileardeleanu.ro</a></div>
+                <div style={{fontSize:10.5,fontWeight:300,marginTop:4}}><a className="da-link" href="mailto:clinici@ardeleanu.ro">clinici@ardeleanu.ro</a></div>
+              </div>
+
+            </div>
+
+            <div style={{height:1,background:'rgba(242,218,183,0.18)',margin:'20px 0 12px'}}/>
+
+            {/* Bottom bar — DIN 2017 kept left so it never collides with the floating mobile button */}
+            <div style={{display:'flex',alignItems:'center',gap:13,flexWrap:'wrap',paddingRight:200}}>
+              <div style={{fontSize:11,fontWeight:700,color:P.wheat,letterSpacing:2}}>DIN 2017</div>
+              <span style={{width:1,height:12,background:'rgba(242,218,183,0.30)'}}/>
+              <div style={{fontSize:9.5,fontWeight:300,color:'rgba(255,255,255,0.45)',letterSpacing:0.2}}>© 2026 Dr. Ardeleanu Dental Clinics · Raport intern · Date confidențiale</div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   );
