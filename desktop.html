@@ -477,6 +477,9 @@ const RAMP = [
   { op:'Dr. Ardeleanu', clinic:'Brăila',     start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,units:11,years:[394681,null,null,null,null,null,null,null,null,null,null,null] },
   // Concurență — bilanțuri oficiale. ATENȚIE: rândurile sunt SOCIETĂȚI (CUI), nu clinici fizice.
   // Dental Blue = Medical Dental Blue SRL (22052400) + Dr. Cohen SRL (36656791), cumulat — grup Dr. Raluca Cohen.
+  // Unident = 4 societăți de clinică, TOATE înregistrate în Tulcea. Clinicile din Galați, Buzău și
+  //             Brașov sunt PUNCTE DE LUCRU ale acestor SRL-uri, nu firme separate — cifra NU se poate
+  //             defalca pe oraș. Laboratorul (CAEN 3250) și entitatea de training (8559) sunt excluse.
   // Prodent Gruia = 2 societăți de clinică, listate separat: Prodent Dr. Dan Gruia SRL (32232874, Câmpina)
   //             și Prodent Dr. Gruia Victoriei SRL (43951557, București). Laboratorul propriu
   //             Prodent Dr. Gruia Lab SRL (40046554, CAEN 3250) este exclus — nu e clinică.
@@ -491,10 +494,10 @@ const RAMP = [
   { op:'Dentrust',      clinic:'Denta Vital SRL',      start:2016, group:'C', yoy2423:24,  yoy2524:53,  yoy2625:null,units:5,years:[502105,1435519,4621622,4015826,3135845,4415417,6080608,5299040,6583020,10052855,null,null] },
   { op:'Edent',         clinic:'Tulcea',     start:2016, group:'C', yoy2423:13, yoy2524:14, yoy2625:null,units:4,years:[451646,1619832,2861556,3690160,3793237,5506669,5864757,6584853,7414484,8448786,null,null] },
   { op:'Edent',         clinic:'București',  start:2022, group:'C', yoy2423:29, yoy2524:18, yoy2625:null,units:6,years:[1765302,5656010,7302800,8584686,null,null,null,null,null,null,null,null] },
-  { op:'Unident',       clinic:'Tulcea',     start:2006, group:'C', yoy2423:57, yoy2524:4,  yoy2625:null,years:[434272,1028949,2082986,2241793,4425339,4318786,4767643,5000498,4974357,7632421,12012873,12474884] },
-  { op:'Unident',       clinic:'Galați',     start:2019, group:'C', yoy2423:-4, yoy2524:49, yoy2625:null,years:[4543687,4653100,4762119,6290208,7207141,6890990,10299128,null,null,null,null,null] },
-  { op:'Unident',       clinic:'Buzău',      start:2019, group:'C', yoy2423:5,  yoy2524:28, yoy2625:null,years:[708585,1071157,3146755,2247194,2249558,2355831,3007904,null,null,null,null,null] },
-  { op:'Unident',       clinic:'Brașov',     start:2019, group:'C', yoy2423:41, yoy2524:22, yoy2625:null,years:[964499,785693,1179334,1544461,1349509,1898523,2308549,null,null,null,null,null] },
+  { op:'Unident',       clinic:'Unident Premium SRL',     start:2014, group:'C', yoy2423:57, yoy2524:4,  yoy2625:null,years:[434272,1028949,2082986,2241793,4425339,4318786,4767643,5000498,4974357,7632421,12012873,12474884] },
+  { op:'Unident',       clinic:'Unident Center SRL',      start:2017, group:'C', yoy2423:-4, yoy2524:49, yoy2625:null,years:[1425834,1835553,4543687,4653100,4762119,6290208,7207141,6890990,10299128,null,null,null] },
+  { op:'Unident',       clinic:'Unident Center Evolution SRL', start:2019, group:'C', yoy2423:5,  yoy2524:28, yoy2625:null,years:[708585,1071157,3146755,2247194,2249558,2355831,3007904,null,null,null,null,null] },
+  { op:'Unident',       clinic:'Unident Implantology SRL',start:2019, group:'C', yoy2423:41, yoy2524:22, yoy2625:null,years:[964499,785693,1179334,1544461,1349509,1898523,2308549,null,null,null,null,null] },
 ];
 
 const YEAR_LABELS = ['Y0','Y1','Y2','Y3','Y4','Y5','Y6','Y7','Y8','Y9','Y10','Y11'];
@@ -589,9 +592,37 @@ const COMP_NOTES = [
   { op:'CM Prolife', city:'Târgoviște', site:'', verified:false,
     summary:'Perimetru neauditat. Prezentat ca o singură clinică — de verificat dacă există firme conexe (mai ales pentru anii cu creșteri neregulate).' },
   { op:'Edent', city:'Tulcea + București', site:'', verified:false,
-    summary:'Perimetru neauditat. Două rânduri (Tulcea, București) — de confirmat dacă sunt CUI-uri distincte sau puncte de lucru ale aceleiași societăți.' },
-  { op:'Unident', city:'Tulcea, Galați, Buzău, Brașov', site:'', verified:false,
-    summary:'Perimetru neauditat. Patru rânduri pe patru orașe — cel mai expus la eroarea de tip Dentrust (firmă-mamă cu alt nume decât brandul) din cauza numărului de locații.' },
+    summary:'Perimetru neauditat. Indiciu găsit în timpul verificării Unident: în Tulcea, la CAEN 8623, apar DOUĂ societăți — Edent Dental SRL (6,6M) și EdentKids Medical SRL (2,7M). Rândul „Tulcea" din tabel s-ar putea să conțină doar prima. De verificat pe CUI.' },
+  {
+    op:'Unident', city:'Tulcea, Galați, Buzău, Brașov', site:'unident.ro', verified:true, checked:'04.08.2026',
+    summary:'Cel mai mare concurent din tabel. Patru societăți de clinică, TOATE înregistrate în Tulcea, plus un laborator CAD-CAM și o entitate de training, excluse. Toate au aceeași asociată și administratoare, Dr. Petronela Luca. Clinicile din Galați, Buzău și Brașov nu sunt firme separate, ci puncte de lucru ale societăților din Tulcea — 19 puncte de lucru în total.',
+    kpis:[['28,09M','CA clinici 2025'],['+21%','YoY 2025'],['4','societăți de clinică'],['4','orașe'],['41','angajați (2025)']],
+    entities:[
+      ['UNIDENT PREMIUM SRL','18807659','2006','12,47M','16','clinica istorică · Str. 14 Noiembrie 6, Tulcea · fostă Estelle Center'],
+      ['UNIDENT CENTER SRL','36395661','2016','10,30M','11','campusul Toamnei 7A · cea mai mare creștere în 2025 (+49%)'],
+      ['UNIDENT CENTER EVOLUTION SRL','39845388','2018','3,01M','9','Toamnei 7A, etaj 1'],
+      ['UNIDENT IMPLANTOLOGY CLINIC SRL','39819443','2018','2,31M','5','Toamnei 7A, etaj 1'],
+      ['UNIDENT DIGITAL CAD CAM LABORATORY SRL','39074755','2018','2,60M','2','EXCLUS · laborator, CAEN 3250'],
+      ['UNIDENT CENTER EDUCATION SRL','38247416','2017','0,39M','1','EXCLUS · training, CAEN 8559 · devenit vehicul imobiliar (5,4M active, 6,2M datorii)'],
+    ],
+    locations:[
+      ['2001–2006','Tulcea, Str. 14 Noiembrie 6','clinica istorică · Unident Premium'],
+      ['2016–2018','Tulcea, Str. Toamnei 7 / 7A','campus: 4 societăți + laborator + centru de training, la aceeași adresă'],
+      ['mar. 2019','Galați, Str. Brăilei 171A','punct de lucru · radiologie 3D deschisă din 2017–18'],
+      ['neconfirmat','Buzău, Bd. Unirii','punct de lucru · centrul de radiologie a precedat clinica'],
+      ['neconfirmat','Brașov, Str. Ștefan Baciu 2','punct de lucru · 570 mp pe două niveluri'],
+    ],
+    series:[['2020',11.28,null],['2021',14.09,25],['2022',15.06,7],['2023',18.44,22],['2024',23.16,26],['2025',28.09,21]],
+    flags:[
+      ['red','Rândurile erau etichetate „Tulcea / Galați / Buzău / Brașov". Greșit: toate cele patru societăți sunt înregistrate în Tulcea, iar clinicile din celelalte trei orașe sunt puncte de lucru ale acestor SRL-uri. Cifra NU se poate defalca pe oraș — rândurile sunt acum societăți.'],
+      ['green','Perimetrul este complet și închis. Suma celor șase firme pe 2022 dă 16.019.510 RON, față de 16.019.549 RON declarat public de grup — diferență de 39 RON. Pe 2024, suma dă 4,99M €, față de „5 milioane €" declarat de fondatoare. Nu mai există o a șaptea firmă cu venituri.'],
+      ['red','Unident este cel mai mare operator din tabel: 28,09M în 2025, față de 16,59M grupul Dentrust și 11,71M Prodent Gruia. Creștere constantă: +22%, +26%, +21% în ultimii trei ani.'],
+      ['amber','Cifra pe care o comunică public grupul include laboratorul CAD-CAM și entitatea de training: 31,09M în 2025. Tabelul folosește doar cele patru societăți de clinică (CAEN 8623): 28,09M.'],
+      ['amber','Marja s-a comprimat puternic: profit net cumulat 893k RON în 2025 pe 28,09M cifră (3,2%), față de 2,40M pe 18,44M în 2023 (13%). Creșterea este cumpărată scump.'],
+      ['amber','Am adăugat anii 2017 și 2018 la Unident Center (1,43M și 1,84M), care lipseau din serie. Seria Unident Premium începe în 2014, deși societatea există din 2006 — Y0 din tabel nu este anul deschiderii.'],
+      ['amber','Numărul de unituri nu este publicat nicăieri, deci coloana CA/Unit rămâne goală. Anii de deschidere pentru Buzău și Brașov nu au putut fi confirmați din surse publice.'],
+    ],
+  },
 ];
 
 const NoteKpi = ({v,l}) => (
