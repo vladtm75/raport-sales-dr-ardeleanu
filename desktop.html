@@ -475,13 +475,18 @@ const RAMP = [
   { op:'Dr. Ardeleanu', clinic:'Târgoviște', start:2025, group:'DA', yoy2423:null,yoy2524:null,yoy2625:348,units:8,years:[1620538,5641963,null,null,null,null,null,null,null,null,null,null] },
   { op:'Dr. Ardeleanu', clinic:'Focșani',    start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,units:5,years:[3715480,null,null,null,null,null,null,null,null,null,null,null] },
   { op:'Dr. Ardeleanu', clinic:'Brăila',     start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,units:11,years:[394681,null,null,null,null,null,null,null,null,null,null,null] },
-  // Concurență — bilanțuri oficiale; unde clinica nu se poate izola per CUI se prezintă grupul (Dental Blue = Medical Dental Blue SRL + Dr. Cohen SRL cumulat)
+  // Concurență — bilanțuri oficiale. ATENȚIE: rândurile sunt SOCIETĂȚI (CUI), nu clinici fizice.
+  // Dental Blue = Medical Dental Blue SRL (22052400) + Dr. Cohen SRL (36656791), cumulat — grup Dr. Raluca Cohen.
+  // Dentrust  = 4 CUI-uri listate separat (Denta Vital, Dentrust Surgery, Clinica Dentrust, Dentrust Hospital);
+  //             fizic sunt 2 clinici în Focșani + 1 în construcție. Vezi caseta de observații de sub tabel.
   { op:'Prodent Gruia', clinic:'Grup: Câmpina+București',start:2014, group:'C', yoy2423:13, yoy2524:17, yoy2625:null,years:[92195,133166,350636,622776,1043275,1783170,2714839,5199138,5786796,7048521,7992963,9355789] },
-  { op:'Dental Blue',   clinic:'Grup: Slobozia+Țăndărei+Fetești',start:2010,group:'C',yoy2423:14,yoy2524:12,yoy2625:null,years:[299611,1103819,1579398,2598074,3264146,3920276,3212120,4078790,5222450,6744177,7715178,8630771] },
+  { op:'Dental Blue',   clinic:'Grup: Dental Blue + Dr. Cohen',start:2010,group:'C',yoy2423:14,yoy2524:12,yoy2625:null,years:[299611,1103819,1579398,2598074,3264146,3920276,3212120,4078790,5222450,6744177,7715178,8630771] },
   { op:'Elida Dent',    clinic:'Grup: 2 clinici Târgoviște',start:2015, group:'C', yoy2423:143,yoy2524:47, yoy2625:null,units:13,years:[77240,235000,404030,688640,872820,2027240,2440210,2435560,5907461,8674481,null,null] },
   { op:'CM Prolife',    clinic:'Târgoviște', start:2005, group:'C', yoy2423:18, yoy2524:2,  yoy2625:null,years:[2416647,2210703,2319557,2509769,2456074,3042141,2428307,3630317,4230868,5515959,6535903,6643557] },
-  { op:'Dentrust',      clinic:'Focșani #1', start:2016, group:'C', yoy2423:24, yoy2524:53, yoy2625:null,years:[502105,1435519,4621622,4015826,3135845,4415417,6080608,5299040,6583020,10052855,null,null] },
-  { op:'Dentrust',      clinic:'Focșani #2', start:2023, group:'C', yoy2423:79, yoy2524:35, yoy2625:null,years:[2376496,4253734,5737403,null,null,null,null,null,null,null,null,null] },
+  { op:'Dentrust',      clinic:'Denta Vital SRL',      start:2016, group:'C', yoy2423:24,  yoy2524:53,  yoy2625:null,years:[502105,1435519,4621622,4015826,3135845,4415417,6080608,5299040,6583020,10052855,null,null] },
+  { op:'Dentrust',      clinic:'Dentrust Surgery SRL', start:2023, group:'C', yoy2423:79,  yoy2524:35,  yoy2625:null,years:[2376496,4253734,5737403,null,null,null,null,null,null,null,null,null] },
+  { op:'Dentrust',      clinic:'Clinica Dentrust SRL', start:2018, group:'C', yoy2423:-58, yoy2524:-28, yoy2625:null,years:[1430000,3208500,3425700,4646900,4778700,2356100,1001600,720300,null,null,null,null] },
+  { op:'Dentrust',      clinic:'Dentrust Hospital SRL',start:2022, group:'C', yoy2423:-71, yoy2524:-89, yoy2625:null,years:[1500,2390356,704723,79824,null,null,null,null,null,null,null,null] },
   { op:'Edent',         clinic:'Tulcea',     start:2016, group:'C', yoy2423:13, yoy2524:14, yoy2625:null,units:4,years:[451646,1619832,2861556,3690160,3793237,5506669,5864757,6584853,7414484,8448786,null,null] },
   { op:'Edent',         clinic:'București',  start:2022, group:'C', yoy2423:29, yoy2524:18, yoy2625:null,units:6,years:[1765302,5656010,7302800,8584686,null,null,null,null,null,null,null,null] },
   { op:'Unident',       clinic:'Tulcea',     start:2006, group:'C', yoy2423:57, yoy2524:4,  yoy2625:null,years:[434272,1028949,2082986,2241793,4425339,4318786,4767643,5000498,4974357,7632421,12012873,12474884] },
@@ -491,6 +496,207 @@ const RAMP = [
 ];
 
 const YEAR_LABELS = ['Y0','Y1','Y2','Y3','Y4','Y5','Y6','Y7','Y8','Y9','Y10','Y11'];
+
+// ─── Observații pe Competitor ────────────────────────────────────────────────
+// Verificări pe bilanțuri ONRC/ANAF + surse publice (termene.ro, listafirme, topfirme,
+// firme360, site-uri proprii, anunțuri de mediu APM).
+// verified:true  = structura de grup a fost validată pe CUI.
+// verified:false = perimetrul din tabel NU a fost încă auditat — poate fi incomplet.
+const COMP_NOTES = [
+  {
+    op:'Dentrust', city:'Focșani', site:'dentrust.ro', verified:true, checked:'04.08.2026',
+    summary:'Un singur operator împărțit în patru societăți, cu aceiași asociați (Dr. Lucian Gabriel Strugaru și Dr. George Gheorghiță), toate cu sediul la Str. Alexandru Vlahuță 7 și același CAEN 8623. Denta Vital este firma-mamă (2006) și deține marca OSIM „Dentrust – Art of dental surgery". Fizic sunt două clinici în Focșani — împărțirea pe patru firme este fiscală, nu operațională.',
+    kpis:[['16,59M','CA grup 2025'],['+32%','YoY grup 2025'],['4','societăți (CUI)'],['2','clinici fizice'],['10–14','unituri (est.)']],
+    entities:[
+      ['DENTA VITAL SRL','18412780','2006','10,05M','16','firma-mamă · marca OSIM · singura cu active imobilizate reale (1,07M)'],
+      ['DENTRUST SURGERY SRL','47317278','dec. 2022','5,74M','10','facturează actul chirurgical · active imobilizate 0,13M · stocuri ~0'],
+      ['CLINICA DENTRUST SRL','39849630','2018','0,72M','2','în restrângere din 2023 · titularul proiectului Popa Șapcă'],
+      ['DENTRUST HOSPITAL SRL','47317219','dec. 2022','0,08M','0','practic închisă'],
+    ],
+    locations:[
+      ['2017','Cuza Vodă 22','clinica principală, pe două niveluri · 7 medici încă din 2019'],
+      ['~2022–23','Alexandru Vlahuță 7','a doua locație · sediul social al celor 4 firme · laborator'],
+      ['în construcție','Popa Șapcă 2Bis','funcțiune clinică/spital · 3 corpuri (C1, C2, C3) · anunț de mediu apr. 2025'],
+    ],
+    series:[['2020',6.56,null],['2021',9.06,38],['2022',10.86,20],['2023',12.42,14],['2024',12.55,1],['2025',16.59,32]],
+    flags:[
+      ['red','Tabelul cumula anterior doar Denta Vital + Dentrust Surgery (15,79M în 2025). Am adăugat Clinica Dentrust și Dentrust Hospital → grup real 16,59M. În 2022 diferența era de 4,78M, nu de 0,8M.'],
+      ['red','Rândurile sunt SOCIETĂȚI, nu clinici. Etichetele anterioare „Focșani #1"/„Focșani #2" sugerau două clinici distincte per CUI — greșit: Dentrust Surgery facturează din aceleași două locații.'],
+      ['amber','„Denta Vital +53% în 2025" este artefact contabil: veniturile au fost mutate dinspre Clinica Dentrust și Dentrust Hospital. Creșterea reală a grupului a fost +1% în 2024 și +32% în 2025. Nu folosiți YoY pe rând individual pentru acest operator.'],
+      ['amber','Surgery și Hospital au fost înființate în aceeași zi (15.12.2022), cu CUI-uri consecutive, și au parcat fiecare cifra 2023 exact sub plafonul micro de 500.000 € (480k € și 483k €). Din 2024, Legea 296/2023 a forțat consolidarea pe Surgery.'],
+      ['green','Fără dublă înregistrare: cheltuielile totale ale Denta Vital (5,35M în 2024) sunt sub cifra facturată de satelite (5,97M), deci fiecare firmă facturează direct pacienții. Cei 16,59M sunt venit extern real.'],
+      ['amber','Cele 5 unituri raportate acoperă o singură locație. La 16,59M (≈3,25M €) ar rezulta 651k €/unit — nerealist. Cu 28 de angajați pe state plus medici colaboratori pe PFA/SRL, estimarea este 10–14 unituri pe cele două locații.'],
+      ['red','A treia locație este în construcție (Popa Șapcă 2Bis) — singurul operator din Focșani cu pipeline de expansiune de tip clinică/spital. De urmărit direct pentru intrarea DA în Focșani.'],
+      ['amber','Seriile Clinica Dentrust 2018–2023 sunt convertite din EUR la curs mediu BNR (sursa publică raportează în EUR) — precizie ±1%.'],
+    ],
+  },
+  {
+    op:'Dental Blue', city:'Slobozia', site:'dentalblue.ro · doctor-cohen.ro', verified:true, checked:'04.08.2026',
+    summary:'Grup cu asociat unic — Dr. Raluca Cohen — care operează sub două branduri: Dental Blue și Dr. Cohen. Medical Dental Blue SRL concentrează aproape toată cifra, iar Dr. Cohen SRL a fost golită după 2023 (2,22M → 0,36M), același tipar de mutare a veniturilor ca la Dentrust. Spre deosebire de Dentrust, perimetrul de venituri din tabel este corect — problemele sunt marja și lista de locații.',
+    kpis:[['8,63M','CA grup 2025'],['+12%','YoY grup 2025'],['2+','societăți (CUI)'],['6+','locații'],['15','angajați']],
+    entities:[
+      ['MEDICAL DENTAL BLUE SRL','22052400','2007','8,28M','15','toată cifra lanțului · capitaluri proprii 43K · active imobilizate 0,64M'],
+      ['DR. COHEN SRL','36656791','2016','0,36M','1','Fetești, Ion Slavici 1 (adresa clinicii Dental Blue Fetești) · 2,22M în 2023, apoi golită'],
+      ['Dr. Cohen Women’s Dental Concept','neidentificat','—','—','—','București, B-dul Pache Protopopescu 31 · societatea nu a putut fi identificată public'],
+    ],
+    locations:[
+      ['2007','Slobozia','sediu istoric · Str. Ardealului bl. 4'],
+      ['2012','Fetești','Ion Slavici bl. V32 (Dental Blue) + Primăverii 17A (Dr. Cohen)'],
+      ['2015','Țăndărei',''],
+      ['2021','Constanța','Aleea Garofiței 28'],
+      ['nedatat','Buzău','Str. Arieșului 3 — LIPSEȘTE din raport'],
+      ['2025','București','Pache Protopopescu 31, Sector 2 (brand Dr. Cohen)'],
+      ['revendicat','Caesarea, Israel','locație internațională revendicată pe site · neverificată'],
+    ],
+    series:[['2020',3.21,null],['2021',4.08,27],['2022',5.22,28],['2023',6.74,29],['2024',7.72,14],['2025',8.63,12]],
+    flags:[
+      ['red','Cifra din tabel (8,63M = Medical Dental Blue + Dr. Cohen) NU coincide cu cea din fișa de operator din raport (8,3M = doar Medical Dental Blue). Același operator, două valori diferite în același raport — de aliniat pe perimetrul cu 2 CUI.'],
+      ['red','Buzău lipsește din lista de locații. Clinica de pe Str. Arieșului 3 este listată explicit ca parte din lanț (aceeași Dr. Raluca Vergu ca la Constanța, același laborator digital propriu). Sunt cel puțin 6 locații, nu 5.'],
+      ['red','Marja NU este utilizabilă. Profit 2.999 RON pe 8.275.528 RON cifră, capitaluri proprii 43.016 RON, active imobilizate 639.701 RON pentru 6 locații (o singură clinică cu 2 unituri costă 300–500K RON de amenajat). Firma este golită de active și profit — comparația de marjă cu Dentrust (unde satelitele fără costuri arată 46%) nu are sens în niciun sens.'],
+      ['amber','Angajații sunt plați: 16 în 2020 → 15 în 2025, în timp ce cifra a crescut de la 3,2M la 8,3M. Venit per angajat: 200K → 552K RON. Capacitatea suplimentară vine integral din medici colaboratori pe PFA/SRL. Nu folosiți numărul de angajați ca proxy de mărime pentru acest operator.'],
+      ['amber','Sediul social apare mutat la București, Str. Cobadin 5, Sector 5 într-una din surse, în timp ce altele arată încă Slobozia. De confirmat — afectează eticheta „REGIONAL · Slobozia".'],
+      ['amber','Poziționare: lanț de clinici mici în orașe mici (≈270–325K € per locație), plus program de turism dentar. Profil de risc competitiv diferit de Dentrust, care e un centru chirurgical concentrat.'],
+      ['green','Nu au fost găsite alte societăți cu venituri nedeclarate în perimetru. Cifra de 8,63M este considerată completă la data verificării, cu rezerva entității din București.'],
+    ],
+  },
+  { op:'Prodent Gruia', city:'Câmpina + București', site:'', verified:false,
+    summary:'Perimetru neauditat. Rândul din tabel se bazează pe cifra cumulată din raportul inițial; structura de grup nu a fost validată pe CUI.' },
+  { op:'Elida Dent', city:'Târgoviște', site:'', verified:false,
+    summary:'Perimetru neauditat. Marcat ca „2 clinici Târgoviște" — de confirmat câte societăți stau în spate și dacă există entități satelit.' },
+  { op:'CM Prolife', city:'Târgoviște', site:'', verified:false,
+    summary:'Perimetru neauditat. Prezentat ca o singură clinică — de verificat dacă există firme conexe (mai ales pentru anii cu creșteri neregulate).' },
+  { op:'Edent', city:'Tulcea + București', site:'', verified:false,
+    summary:'Perimetru neauditat. Două rânduri (Tulcea, București) — de confirmat dacă sunt CUI-uri distincte sau puncte de lucru ale aceleiași societăți.' },
+  { op:'Unident', city:'Tulcea, Galați, Buzău, Brașov', site:'', verified:false,
+    summary:'Perimetru neauditat. Patru rânduri pe patru orașe — cel mai expus la eroarea de tip Dentrust (firmă-mamă cu alt nume decât brandul) din cauza numărului de locații.' },
+];
+
+const NoteKpi = ({v,l}) => (
+  <div style={{flex:'1 1 0',minWidth:88,padding:'9px 12px',background:'#FAFAFA',border:`1px solid ${P.border}`,borderRadius:8}}>
+    <div style={{fontSize:16,fontWeight:800,color:P.primary,lineHeight:1.15}}>{v}</div>
+    <div style={{fontSize:9,color:P.muted,textTransform:'uppercase',letterSpacing:0.5,marginTop:2}}>{l}</div>
+  </div>
+);
+
+function CompetitorNote({n, isOpen, onToggle}){
+  return (
+    <div style={{border:`1px solid ${P.border}`,borderRadius:10,overflow:'hidden',background:P.white,marginBottom:12,boxShadow:'0 1px 3px rgba(0,0,0,0.04)'}}>
+      {/* Header */}
+      <div onClick={onToggle} style={{
+        display:'flex',alignItems:'center',gap:10,padding:'11px 16px',cursor:'pointer',
+        background: n.verified ? '#FBF6F6' : '#FAFAFA',
+        borderBottom: isOpen ? `1px solid ${P.border}` : 'none',
+      }}>
+        <span style={{fontSize:11,color:P.muted,width:10}}>{isOpen?'▾':'▸'}</span>
+        <span style={{fontSize:13,fontWeight:800,color:P.primary,fontFamily:"'Playfair Display',serif"}}>{n.op}</span>
+        <span style={{fontSize:11,color:'#555'}}>· {n.city}</span>
+        {n.site && <span style={{fontSize:10,color:P.muted}}>· {n.site}</span>}
+        <span style={{marginLeft:'auto',display:'flex',alignItems:'center',gap:8}}>
+          {n.verified
+            ? <span style={{fontSize:9,fontWeight:700,letterSpacing:0.6,padding:'3px 8px',borderRadius:20,background:'#DCFCE7',color:'#15803D'}}>VERIFICAT {n.checked}</span>
+            : <span style={{fontSize:9,fontWeight:700,letterSpacing:0.6,padding:'3px 8px',borderRadius:20,background:'#FFFBEB',color:'#92400E',border:'1px solid #FDE68A'}}>NEVERIFICAT</span>}
+        </span>
+      </div>
+
+      {isOpen && (
+        <div style={{padding:'14px 16px 16px'}}>
+          {/* Executive summary */}
+          <div style={{fontSize:12.5,lineHeight:1.65,color:P.text,marginBottom:n.kpis?13:0}}>{n.summary}</div>
+
+          {n.kpis && (
+            <div style={{display:'flex',gap:8,flexWrap:'wrap',marginBottom:15}}>
+              {n.kpis.map(([v,l])=><NoteKpi key={l} v={v} l={l}/>)}
+            </div>
+          )}
+
+          {n.entities && (<>
+            <Sec>Societăți în perimetru (CAEN 8623)</Sec>
+            <div style={{border:`1px solid ${P.border}`,borderRadius:8,overflow:'hidden',marginBottom:15}}>
+              <div style={{display:'grid',gridTemplateColumns:'210px 88px 78px 74px 52px 1fr',background:'#F8F4F4',borderBottom:`1px solid ${P.border}`}}>
+                {['Societate','CUI','Înființată','CA 2025','Ang.','Rol în grup'].map(h=>(
+                  <div key={h} style={{padding:'6px 9px',fontSize:9,fontWeight:700,color:P.primary,textTransform:'uppercase',letterSpacing:0.5}}>{h}</div>
+                ))}
+              </div>
+              {n.entities.map((e,i)=>(
+                <div key={i} style={{display:'grid',gridTemplateColumns:'210px 88px 78px 74px 52px 1fr',borderBottom:i<n.entities.length-1?`1px solid #F2F2F2`:'none',background:i%2?'#FCFCFC':P.white}}>
+                  <div style={{padding:'7px 9px',fontSize:10.5,fontWeight:700,color:P.text}}>{e[0]}</div>
+                  <div style={{padding:'7px 9px',fontSize:10,color:P.muted,fontVariantNumeric:'tabular-nums'}}>{e[1]}</div>
+                  <div style={{padding:'7px 9px',fontSize:10,color:'#555'}}>{e[2]}</div>
+                  <div style={{padding:'7px 9px',fontSize:10.5,fontWeight:700,color:P.primary,textAlign:'right'}}>{e[3]}</div>
+                  <div style={{padding:'7px 9px',fontSize:10,color:'#555',textAlign:'center'}}>{e[4]}</div>
+                  <div style={{padding:'7px 9px',fontSize:10,color:'#666',lineHeight:1.45}}>{e[5]}</div>
+                </div>
+              ))}
+            </div>
+          </>)}
+
+          {n.locations && (<>
+            <Sec>Locații & deschideri</Sec>
+            <div style={{display:'flex',flexDirection:'column',gap:5,marginBottom:15}}>
+              {n.locations.map((l,i)=>(
+                <div key={i} style={{display:'flex',alignItems:'flex-start',gap:10,fontSize:11.5}}>
+                  <span style={{minWidth:96,fontSize:9.5,fontWeight:700,color:P.white,background:l[0]==='în construcție'?P.alert:(l[0]==='nedatat'||l[0]==='revendicat')?P.amber:P.primary,borderRadius:3,padding:'3px 7px',textAlign:'center'}}>{l[0]}</span>
+                  <span style={{fontWeight:700,color:P.text,minWidth:150}}>{l[1]}</span>
+                  <span style={{color:P.muted,lineHeight:1.5}}>{l[2]}</span>
+                </div>
+              ))}
+            </div>
+          </>)}
+
+          {n.series && (<>
+            <Sec>Cifră consolidată grup (mil. RON)</Sec>
+            <div style={{display:'flex',gap:6,marginBottom:15,flexWrap:'wrap'}}>
+              {n.series.map(([y,v,g])=>(
+                <div key={y} style={{flex:'1 1 0',minWidth:78,border:`1px solid ${P.border}`,borderRadius:7,padding:'7px 9px',background:y==='2025'?'#FBF6F6':P.white}}>
+                  <div style={{fontSize:9,color:P.muted,fontWeight:700}}>{y}</div>
+                  <div style={{fontSize:14,fontWeight:800,color:P.primary,lineHeight:1.2}}>{v.toFixed(2)}</div>
+                  <div style={{fontSize:9,fontWeight:700,color:g==null?'#CCC':g>=10?'#15803D':g>=0?P.amber:P.alert}}>{g==null?'—':(g>0?'+':'')+g+'%'}</div>
+                </div>
+              ))}
+            </div>
+          </>)}
+
+          {n.flags && (<>
+            <Sec>Observații pentru interpretarea tabelului</Sec>
+            {n.flags.map(([t,txt],i)=><Pill key={i} type={t}>{txt}</Pill>)}
+          </>)}
+
+          {!n.flags && (
+            <Pill type="amber">Structura de grup nu a fost încă validată pe CUI. Cifra din tabel poate fi incompletă — vezi cazul Dentrust, unde lipseau 2 din 4 societăți.</Pill>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function CompetitorNotes(){
+  const [open,setOpen] = useState(()=>new Set(COMP_NOTES.filter(n=>n.verified).map(n=>n.op)));
+  const toggle = (op)=>setOpen(prev=>{const s=new Set(prev); s.has(op)?s.delete(op):s.add(op); return s;});
+  const nVer = COMP_NOTES.filter(n=>n.verified).length;
+  return (
+    <div style={{marginTop:18}}>
+      <div style={{background:P.primary,padding:'12px 16px',borderRadius:'12px 12px 0 0',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+        <div>
+          <div style={{fontSize:13,fontWeight:700,color:P.white,fontFamily:"'Playfair Display',serif"}}>Observații pe Competitor · Consolidare, clinici, unituri, creșteri</div>
+          <div style={{fontSize:10,color:'rgba(255,255,255,0.5)',marginTop:2}}>Verificat pe bilanțuri ONRC/ANAF și surse publice · click pe operator pentru a extinde</div>
+        </div>
+        <div style={{display:'flex',gap:8,alignItems:'center'}}>
+          <span style={{fontSize:9,fontWeight:700,padding:'3px 8px',borderRadius:20,background:'#DCFCE7',color:'#15803D'}}>{nVer} VERIFICAȚI</span>
+          <span style={{fontSize:9,fontWeight:700,padding:'3px 8px',borderRadius:20,background:'rgba(255,255,255,0.15)',color:P.wheat}}>{COMP_NOTES.length-nVer} DE VERIFICAT</span>
+        </div>
+      </div>
+      <div style={{background:'#FCFAFA',border:`1px solid ${P.border}`,borderTop:'none',borderRadius:'0 0 12px 12px',padding:'14px 14px 4px'}}>
+        <Pill type="red">
+          <b>Regulă de citire.</b> Rândurile din tabelul de mai sus sunt <b>societăți (CUI)</b>, nu clinici. Doi dintre operatori mută venituri între firme de la an la an, ceea ce face ca YoY-ul pe rând individual să fie fals. Comparați numai la nivel de grup, folosind cifra consolidată din casetele de mai jos.
+        </Pill>
+        {COMP_NOTES.map(n=>(
+          <CompetitorNote key={n.op} n={n} isOpen={open.has(n.op)} onToggle={()=>toggle(n.op)}/>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 // ─── Ramp-up Tab ─────────────────────────────────────────────────────────────
 function RampupTab() {
@@ -527,13 +733,13 @@ function RampupTab() {
 
   const rowColors = { DA: P.primary, C: '#888' };
 
-  const TableSection = ({rows, title, color, isDA}) => (
+  const TableSection = ({rows, title, color, isDA, unit}) => (
     <div style={{marginBottom: isDA?0:0}}>
       {/* Section header */}
       <div style={{background:color,padding:'8px 16px',display:'flex',alignItems:'center',gap:10}}>
         <div style={{width:6,height:6,borderRadius:1,background:'rgba(255,255,255,0.6)',transform:'rotate(45deg)'}}/>
         <span style={{fontSize:11,fontWeight:700,color:P.white,letterSpacing:1,textTransform:'uppercase'}}>{title}</span>
-        <span style={{fontSize:10,color:'rgba(255,255,255,0.5)',marginLeft:4}}>{rows.length} clinici</span>
+        <span style={{fontSize:10,color:'rgba(255,255,255,0.5)',marginLeft:4}}>{rows.length} {unit||'clinici'}</span>
       </div>
       {rows.map((r,i)=>{
         const isHL = highlight===`${r.op}-${r.clinic}`;
@@ -645,7 +851,7 @@ function RampupTab() {
         </div>
 
         <TableSection rows={daRows} title="Dr. Ardeleanu Dental Clinics" color={P.primary} isDA={true}/>
-        <TableSection rows={cRows}  title="Concurență Relevantă" color="#666" isDA={false}/>
+        <TableSection rows={cRows}  title="Concurență Relevantă" color="#666" isDA={false} unit="societăți (CUI)"/>
       </div>
 
       {/* Insight cards */}
@@ -664,7 +870,7 @@ function RampupTab() {
           {[
             ['Slobozia vs Dental Blue Slobozia','DA depășește în Y2 nivelul Y5 al concurenței','green'],
             ['Târgoviște vs CM Prolife + Elida','DA la +348% YoY · Elida a accelerat în 2025: +47% (8.67M)','amber'],
-            ['Focșani vs Dentrust','DA Y0: 3.72M · Dentrust 2025: 15.8M pe 2 clinici (+53%/+35%)','amber'],
+            ['Focșani vs Dentrust','DA Y0: 3.72M · Dentrust grup 2025: 16.59M pe 2 clinici / 4 CUI (+32% grup)','red'],
             ['Oltenița maturitate','Y8: 5.89M · trend stabil top-performer','green'],
           ].map(([c,t,type])=><Pill key={c} type={type}><b>{c}</b> — {t}</Pill>)}
         </Card>
@@ -678,6 +884,9 @@ function RampupTab() {
           ].map(([c,t,type])=><Pill key={c} type={type}><b>{c}</b> — {t}</Pill>)}
         </Card>
       </div>
+
+      {/* Observații pe competitor */}
+      <CompetitorNotes/>
     </div>
   );
 }
