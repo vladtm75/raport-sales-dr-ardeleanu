@@ -477,10 +477,14 @@ const RAMP = [
   { op:'Dr. Ardeleanu', clinic:'Brăila',     start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,units:11,years:[394681,null,null,null,null,null,null,null,null,null,null,null] },
   // Concurență — bilanțuri oficiale. ATENȚIE: rândurile sunt SOCIETĂȚI (CUI), nu clinici fizice.
   // Dental Blue = Medical Dental Blue SRL (22052400) + Dr. Cohen SRL (36656791), cumulat — grup Dr. Raluca Cohen.
+  // Prodent Gruia = 2 societăți de clinică, listate separat: Prodent Dr. Dan Gruia SRL (32232874, Câmpina)
+  //             și Prodent Dr. Gruia Victoriei SRL (43951557, București). Laboratorul propriu
+  //             Prodent Dr. Gruia Lab SRL (40046554, CAEN 3250) este exclus — nu e clinică.
   // Dentrust  = DOAR Denta Vital SRL (firma-mamă, CUI 18412780). Celelalte trei societăți ale grupului
   //             (Dentrust Surgery, Clinica Dentrust, Dentrust Hospital) sunt excluse din perimetru.
   //             Cumulat pe cele 4 CUI, grupul face 16,59M în 2025. Vezi caseta de observații de sub tabel.
-  { op:'Prodent Gruia', clinic:'Grup: Câmpina+București',start:2014, group:'C', yoy2423:13, yoy2524:17, yoy2625:null,years:[92195,133166,350636,622776,1043275,1783170,2714839,5199138,5786796,7048521,7992963,9355789] },
+  { op:'Prodent Gruia', clinic:'Câmpina',    start:2014, group:'C', yoy2423:13, yoy2524:17, yoy2625:null,years:[92195,133166,350636,622776,1043275,1783170,2714839,5199138,5786796,7048521,7992963,9355789] },
+  { op:'Prodent Gruia', clinic:'București',  start:2021, group:'C', yoy2423:99, yoy2524:58, yoy2625:null,years:[28499,540519,750938,1492445,2358832,null,null,null,null,null,null,null] },
   { op:'Dental Blue',   clinic:'Grup: Dental Blue + Dr. Cohen',start:2010,group:'C',yoy2423:14,yoy2524:12,yoy2625:null,years:[299611,1103819,1579398,2598074,3264146,3920276,3212120,4078790,5222450,6744177,7715178,8630771] },
   { op:'Elida Dent',    clinic:'Grup: 2 clinici Târgoviște',start:2015, group:'C', yoy2423:143,yoy2524:47, yoy2625:null,units:13,years:[77240,235000,404030,688640,872820,2027240,2440210,2435560,5907461,8674481,null,null] },
   { op:'CM Prolife',    clinic:'Târgoviște', start:2005, group:'C', yoy2423:18, yoy2524:2,  yoy2625:null,years:[2416647,2210703,2319557,2509769,2456074,3042141,2428307,3630317,4230868,5515959,6535903,6643557] },
@@ -556,8 +560,30 @@ const COMP_NOTES = [
       ['green','Nu au fost găsite alte societăți cu venituri nedeclarate în perimetru. Cifra de 8,63M este considerată completă la data verificării, cu rezerva entității din București.'],
     ],
   },
-  { op:'Prodent Gruia', city:'Câmpina + București', site:'', verified:false,
-    summary:'Perimetru neauditat. Rândul din tabel se bazează pe cifra cumulată din raportul inițial; structura de grup nu a fost validată pe CUI.' },
+  {
+    op:'Prodent Gruia', city:'Câmpina + București', site:'prodent.ro', verified:true, checked:'04.08.2026',
+    summary:'Grup fondat de Dr. Dan Gruia, cu două societăți de clinică listate acum separat în tabel, plus un laborator propriu exclus din comparație. Câmpina (2013) este clinica-mamă și singura profitabilă; București–Victoriei (2021) este o deschidere finanțată din datorie, încă pe pierdere. Perimetrul se reconciliază cu declarațiile publice ale fondatorului.',
+    kpis:[['11,71M','CA grup 2025'],['+24%','YoY grup 2025'],['2','societăți de clinică'],['2','clinici'],['40','angajați (2024)']],
+    entities:[
+      ['PRODENT DR. DAN GRUIA SRL','32232874','2013','9,36M','14','Câmpina, B-dul Carol I 64 · clinica-mamă · marjă netă ~19%'],
+      ['PRODENT DR. GRUIA VICTORIEI SRL','43951557','2021','2,36M','6','București, Henri Coandă 31A · pierdere în fiecare an · capitaluri proprii −1,08M'],
+      ['PRODENT DR.GRUIA LAB SRL','40046554','2018','—','—','EXCLUS · laborator, CAEN 3250 — nu este clinică'],
+    ],
+    locations:[
+      ['2013','Câmpina, B-dul Carol I 64','clinica-mamă · laborator intern cu frezare pentru same-day dentistry'],
+      ['2021','București, Henri Coandă 31A','700k € construcție + 300k € echipamente · de la 1 la 6 angajați'],
+    ],
+    series:[['2020',2.71,null],['2021',5.23,93],['2022',6.33,21],['2023',7.80,23],['2024',9.49,22],['2025',11.71,23]],
+    flags:[
+      ['red','Rândul anterior „Grup: Câmpina+București" conținea DOAR Câmpina — societatea din București lipsea complet din tabel. Adăugată acum: 2,36M în 2025. Grupul face 11,71M, nu 9,36M.'],
+      ['green','Perimetru verificat pe CUI și reconciliat cu sursele publice: 9,52M în 2024 și 7,80M în 2023, față de „peste 9,5 mil. lei în 2024, de la 7,9 mil. în 2023" declarat de fondator în presă.'],
+      ['amber','Câmpina este motorul grupului: 9,36M cu 14 angajați și marjă netă ~19%. Singura entitate profitabilă.'],
+      ['red','București pierde bani de la înființare: capitaluri proprii −1.082.900 RON și datorii de 2.207.592 RON la finalul lui 2024, pe o cifră de 1,49M. Creșterea de +58% în 2025 pleacă de pe bază mică și încă nu acoperă costul deschiderii.'],
+      ['amber','Ținta publică a fondatorului pentru 2025 a fost +30%; realizat +23,5% la nivel de grup.'],
+      ['amber','Numărul de unituri nu este public pentru niciuna dintre cele două clinici — de aceea coloana CA/Unit rămâne goală.'],
+      ['amber','Cifrele 2025 sunt convertite din EUR la curs mediu BNR (sursa publică raportează în EUR) — precizie ±1%.'],
+    ],
+  },
   { op:'Elida Dent', city:'Târgoviște', site:'', verified:false,
     summary:'Perimetru neauditat. Marcat ca „2 clinici Târgoviște" — de confirmat câte societăți stau în spate și dacă există entități satelit.' },
   { op:'CM Prolife', city:'Târgoviște', site:'', verified:false,
