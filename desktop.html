@@ -477,16 +477,14 @@ const RAMP = [
   { op:'Dr. Ardeleanu', clinic:'Brăila',     start:2026, group:'DA', yoy2423:null,yoy2524:null,yoy2625:null,units:11,years:[394681,null,null,null,null,null,null,null,null,null,null,null] },
   // Concurență — bilanțuri oficiale. ATENȚIE: rândurile sunt SOCIETĂȚI (CUI), nu clinici fizice.
   // Dental Blue = Medical Dental Blue SRL (22052400) + Dr. Cohen SRL (36656791), cumulat — grup Dr. Raluca Cohen.
-  // Dentrust  = 4 CUI-uri listate separat (Denta Vital, Dentrust Surgery, Clinica Dentrust, Dentrust Hospital);
-  //             fizic sunt 2 clinici în Focșani + 1 în construcție. Vezi caseta de observații de sub tabel.
+  // Dentrust  = DOAR Denta Vital SRL (firma-mamă, CUI 18412780). Celelalte trei societăți ale grupului
+  //             (Dentrust Surgery, Clinica Dentrust, Dentrust Hospital) sunt excluse din perimetru.
+  //             Cumulat pe cele 4 CUI, grupul face 16,59M în 2025. Vezi caseta de observații de sub tabel.
   { op:'Prodent Gruia', clinic:'Grup: Câmpina+București',start:2014, group:'C', yoy2423:13, yoy2524:17, yoy2625:null,years:[92195,133166,350636,622776,1043275,1783170,2714839,5199138,5786796,7048521,7992963,9355789] },
   { op:'Dental Blue',   clinic:'Grup: Dental Blue + Dr. Cohen',start:2010,group:'C',yoy2423:14,yoy2524:12,yoy2625:null,years:[299611,1103819,1579398,2598074,3264146,3920276,3212120,4078790,5222450,6744177,7715178,8630771] },
   { op:'Elida Dent',    clinic:'Grup: 2 clinici Târgoviște',start:2015, group:'C', yoy2423:143,yoy2524:47, yoy2625:null,units:13,years:[77240,235000,404030,688640,872820,2027240,2440210,2435560,5907461,8674481,null,null] },
   { op:'CM Prolife',    clinic:'Târgoviște', start:2005, group:'C', yoy2423:18, yoy2524:2,  yoy2625:null,years:[2416647,2210703,2319557,2509769,2456074,3042141,2428307,3630317,4230868,5515959,6535903,6643557] },
-  { op:'Dentrust',      clinic:'Denta Vital SRL',      start:2016, group:'C', yoy2423:24,  yoy2524:53,  yoy2625:null,years:[502105,1435519,4621622,4015826,3135845,4415417,6080608,5299040,6583020,10052855,null,null] },
-  { op:'Dentrust',      clinic:'Dentrust Surgery SRL', start:2023, group:'C', yoy2423:79,  yoy2524:35,  yoy2625:null,years:[2376496,4253734,5737403,null,null,null,null,null,null,null,null,null] },
-  { op:'Dentrust',      clinic:'Clinica Dentrust SRL', start:2018, group:'C', yoy2423:-58, yoy2524:-28, yoy2625:null,years:[1430000,3208500,3425700,4646900,4778700,2356100,1001600,720300,null,null,null,null] },
-  { op:'Dentrust',      clinic:'Dentrust Hospital SRL',start:2022, group:'C', yoy2423:-71, yoy2524:-89, yoy2625:null,years:[1500,2390356,704723,79824,null,null,null,null,null,null,null,null] },
+  { op:'Dentrust',      clinic:'Denta Vital SRL',      start:2016, group:'C', yoy2423:24,  yoy2524:53,  yoy2625:null,units:5,years:[502105,1435519,4621622,4015826,3135845,4415417,6080608,5299040,6583020,10052855,null,null] },
   { op:'Edent',         clinic:'Tulcea',     start:2016, group:'C', yoy2423:13, yoy2524:14, yoy2625:null,units:4,years:[451646,1619832,2861556,3690160,3793237,5506669,5864757,6584853,7414484,8448786,null,null] },
   { op:'Edent',         clinic:'București',  start:2022, group:'C', yoy2423:29, yoy2524:18, yoy2625:null,units:6,years:[1765302,5656010,7302800,8584686,null,null,null,null,null,null,null,null] },
   { op:'Unident',       clinic:'Tulcea',     start:2006, group:'C', yoy2423:57, yoy2524:4,  yoy2625:null,years:[434272,1028949,2082986,2241793,4425339,4318786,4767643,5000498,4974357,7632421,12012873,12474884] },
@@ -505,29 +503,28 @@ const YEAR_LABELS = ['Y0','Y1','Y2','Y3','Y4','Y5','Y6','Y7','Y8','Y9','Y10','Y1
 const COMP_NOTES = [
   {
     op:'Dentrust', city:'Focșani', site:'dentrust.ro', verified:true, checked:'04.08.2026',
-    summary:'Un singur operator împărțit în patru societăți, cu aceiași asociați (Dr. Lucian Gabriel Strugaru și Dr. George Gheorghiță), toate cu sediul la Str. Alexandru Vlahuță 7 și același CAEN 8623. Denta Vital este firma-mamă (2006) și deține marca OSIM „Dentrust – Art of dental surgery". Fizic sunt două clinici în Focșani — împărțirea pe patru firme este fiscală, nu operațională.',
-    kpis:[['16,59M','CA grup 2025'],['+32%','YoY grup 2025'],['4','societăți (CUI)'],['2','clinici fizice'],['10–14','unituri (est.)']],
+    summary:'Un singur operator împărțit în patru societăți, cu aceiași asociați (Dr. Lucian Gabriel Strugaru și Dr. George Gheorghiță), toate cu sediul la Str. Alexandru Vlahuță 7 și același CAEN 8623. Denta Vital este firma-mamă (2006) și deține marca OSIM „Dentrust – Art of dental surgery". Fizic sunt două clinici în Focșani — împărțirea pe patru firme este fiscală, nu operațională. ÎN TABEL ESTE LISTATĂ DOAR DENTA VITAL: celelalte trei societăți sunt excluse din perimetru, pentru că nu au infrastructură proprie și facturează din aceleași două locații.',
+    kpis:[['10,05M','Denta Vital 2025 (în tabel)'],['+53%','YoY 2025 — vezi nota'],['16,59M','grup 4 CUI (exclus)'],['2','clinici fizice'],['10–14','unituri (est.)']],
     entities:[
-      ['DENTA VITAL SRL','18412780','2006','10,05M','16','firma-mamă · marca OSIM · singura cu active imobilizate reale (1,07M)'],
-      ['DENTRUST SURGERY SRL','47317278','dec. 2022','5,74M','10','facturează actul chirurgical · active imobilizate 0,13M · stocuri ~0'],
-      ['CLINICA DENTRUST SRL','39849630','2018','0,72M','2','în restrângere din 2023 · titularul proiectului Popa Șapcă'],
-      ['DENTRUST HOSPITAL SRL','47317219','dec. 2022','0,08M','0','practic închisă'],
+      ['DENTA VITAL SRL','18412780','2006','10,05M','16','ÎN TABEL · firma-mamă · marca OSIM · singura cu active imobilizate reale (1,07M)'],
+      ['DENTRUST SURGERY SRL','47317278','dec. 2022','5,74M','10','EXCLUS · facturează actul chirurgical · active imobilizate 0 în 2025 · stocuri 0'],
+      ['CLINICA DENTRUST SRL','39849630','2018','0,72M','2','EXCLUS · în restrângere din 2023 · titularul proiectului Popa Șapcă'],
+      ['DENTRUST HOSPITAL SRL','47317219','dec. 2022','0,08M','0','EXCLUS · practic închisă'],
     ],
     locations:[
       ['2017','Cuza Vodă 22','clinica principală, pe două niveluri · 7 medici încă din 2019'],
       ['~2022–23','Alexandru Vlahuță 7','a doua locație · sediul social al celor 4 firme · laborator'],
       ['în construcție','Popa Șapcă 2Bis','funcțiune clinică/spital · 3 corpuri (C1, C2, C3) · anunț de mediu apr. 2025'],
     ],
-    series:[['2020',6.56,null],['2021',9.06,38],['2022',10.86,20],['2023',12.42,14],['2024',12.55,1],['2025',16.59,32]],
+    series:[['2020',3.14,null],['2021',4.42,41],['2022',6.08,38],['2023',5.30,-13],['2024',6.58,24],['2025',10.05,53]],
     flags:[
-      ['red','Tabelul cumula anterior doar Denta Vital + Dentrust Surgery (15,79M în 2025). Am adăugat Clinica Dentrust și Dentrust Hospital → grup real 16,59M. În 2022 diferența era de 4,78M, nu de 0,8M.'],
-      ['red','Rândurile sunt SOCIETĂȚI, nu clinici. Etichetele anterioare „Focșani #1"/„Focșani #2" sugerau două clinici distincte per CUI — greșit: Dentrust Surgery facturează din aceleași două locații.'],
-      ['amber','„Denta Vital +53% în 2025" este artefact contabil: veniturile au fost mutate dinspre Clinica Dentrust și Dentrust Hospital. Creșterea reală a grupului a fost +1% în 2024 și +32% în 2025. Nu folosiți YoY pe rând individual pentru acest operator.'],
+      ['red','PERIMETRU: tabelul listează doar Denta Vital SRL. Cele trei satelite (Surgery 5,74M, Clinica Dentrust 0,72M, Hospital 0,08M) sunt excluse. Cumulat, grupul ar face 16,59M în 2025 față de 10,05M afișat — diferență de 6,54M. Decizie de raportare, nu eroare de date.'],
+      ['amber','„+53% în 2025" este parțial artefact contabil: o parte din creștere vine din mutarea veniturilor dinspre Clinica Dentrust (2,36M în 2023 → 0,72M în 2025) și Dentrust Hospital (2,39M → 0,08M). La nivel de grup creșterea a fost +1% în 2024 și +32% în 2025.'],
       ['amber','Surgery și Hospital au fost înființate în aceeași zi (15.12.2022), cu CUI-uri consecutive, și au parcat fiecare cifra 2023 exact sub plafonul micro de 500.000 € (480k € și 483k €). Din 2024, Legea 296/2023 a forțat consolidarea pe Surgery.'],
-      ['green','Fără dublă înregistrare: cheltuielile totale ale Denta Vital (5,35M în 2024) sunt sub cifra facturată de satelite (5,97M), deci fiecare firmă facturează direct pacienții. Cei 16,59M sunt venit extern real.'],
-      ['amber','Cele 5 unituri raportate acoperă o singură locație. La 16,59M (≈3,25M €) ar rezulta 651k €/unit — nerealist. Cu 28 de angajați pe state plus medici colaboratori pe PFA/SRL, estimarea este 10–14 unituri pe cele două locații.'],
+      ['amber','Ipoteza intercompany a fost testată și NU se confirmă la scară: în 2023 cheltuielile totale ale Denta Vital + Clinica Dentrust (6,60M) nu acoperă cei 4,77M facturați de satelite plus 28 de salarii și materiale; iar creanțele satelitelor (3,63M) depășesc datoriile totale ale celorlalte firme (3,14M). Excluderea este prudentă, nu demonstrată.'],
+      ['red','Satelitele arată tipar de vehicul de facturare în 2023: 1 angajat, stocuri 0, active imobilizate 0, creanțe 74–78% din cifră, casă sub 40k. În 2025 Surgery are însă 10 angajați și 54% cheltuieli/cifră — structură de clinică reală.'],
+      ['amber','Cele 5 unituri raportate acoperă o singură locație. Chiar și la 10,05M (≈1,97M €) ar rezulta 394k €/unit — ridicat. Cu 28 de angajați pe state plus medici colaboratori pe PFA/SRL, estimarea rămâne 10–14 unituri pe cele două locații.'],
       ['red','A treia locație este în construcție (Popa Șapcă 2Bis) — singurul operator din Focșani cu pipeline de expansiune de tip clinică/spital. De urmărit direct pentru intrarea DA în Focșani.'],
-      ['amber','Seriile Clinica Dentrust 2018–2023 sunt convertite din EUR la curs mediu BNR (sursa publică raportează în EUR) — precizie ±1%.'],
     ],
   },
   {
@@ -671,7 +668,7 @@ function CompetitorNote({n, isOpen, onToggle}){
 }
 
 function CompetitorNotes(){
-  const [open,setOpen] = useState(()=>new Set(COMP_NOTES.filter(n=>n.verified).map(n=>n.op)));
+  const [open,setOpen] = useState(()=>new Set());
   const toggle = (op)=>setOpen(prev=>{const s=new Set(prev); s.has(op)?s.delete(op):s.add(op); return s;});
   const nVer = COMP_NOTES.filter(n=>n.verified).length;
   return (
@@ -870,7 +867,7 @@ function RampupTab() {
           {[
             ['Slobozia vs Dental Blue Slobozia','DA depășește în Y2 nivelul Y5 al concurenței','green'],
             ['Târgoviște vs CM Prolife + Elida','DA la +348% YoY · Elida a accelerat în 2025: +47% (8.67M)','amber'],
-            ['Focșani vs Dentrust','DA Y0: 3.72M · Dentrust grup 2025: 16.59M pe 2 clinici / 4 CUI (+32% grup)','red'],
+            ['Focșani vs Dentrust','DA Y0: 3.72M · Denta Vital 2025: 10.05M (+53%) · grup 4 CUI, exclus din tabel: 16.59M','red'],
             ['Oltenița maturitate','Y8: 5.89M · trend stabil top-performer','green'],
           ].map(([c,t,type])=><Pill key={c} type={type}><b>{c}</b> — {t}</Pill>)}
         </Card>
